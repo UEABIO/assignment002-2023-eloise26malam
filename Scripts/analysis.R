@@ -34,7 +34,7 @@ cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
                            se=FALSE)
 
 ## diet, weight change ----
-cricket_abs %>% ggplot(aes(x=diet, y=weight_change, group=diet))+
+diet_weightchange <- cricket_abs %>% ggplot(aes(x=diet, y=weight_change, group=diet))+
   geom_rect(xmin= -Inf,
             xmax= Inf,
             ymin= -Inf, 
@@ -49,6 +49,8 @@ cricket_abs %>% ggplot(aes(x=diet, y=weight_change, group=diet))+
                      breaks=seq(12,84,12))+
   scale_y_continuous(name= "Weight Change (g)",
                      breaks=seq(-0.060, 0.090, 0.03))
+diet_weightchange
+ggsave("Graphs/diet_weightchange_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
 ##diet, duration----
 cricket_abs %>% ggplot(aes(x=diet, y=song_duration, group=diet))+
