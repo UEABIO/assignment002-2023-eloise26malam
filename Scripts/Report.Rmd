@@ -7,5 +7,9 @@
 ### [Analysis]{.underline}
 
 ### [Results & Discussion]{.underline}
+```{r, echo=FALSE}
+knitr::include_graphics("../Graphs/diet_weightchange_march23.png")
+
+```
 
 ### [References]{.underline}
