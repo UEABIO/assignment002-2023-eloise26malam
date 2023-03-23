@@ -38,14 +38,17 @@ cricket_abs %>% ggplot(aes(x=diet, y=weight_change, group=diet))+
   geom_rect(xmin= -Inf,
             xmax= Inf,
             ymin= -Inf, 
-            ymax=0, fill="#f54842")+
+            ymax=0, fill="#ff4f4f")+
   geom_rect(xmin= -Inf,
             xmax= Inf,
             ymin= 0, 
             ymax= Inf, fill="#6bff72")+
-  geom_boxplot(aes(fill=diet)) +
+  geom_boxplot(aes(fill=diet), show.legend = FALSE) +
   scale_fill_gradient(low="#616161", high="#fcfcfc")+
-  scale_x_continuous(name="Diet- nutritional %", breaks=seq(12,84,12))
+  scale_x_continuous(name="Diet (nutritional %)", 
+                     breaks=seq(12,84,12))+
+  scale_y_continuous(name= "Weight Change (g)",
+                     breaks=seq(-0.060, 0.090, 0.03))
 
 ##diet, duration----
 cricket_abs %>% ggplot(aes(x=diet, y=song_duration, group=diet))+
