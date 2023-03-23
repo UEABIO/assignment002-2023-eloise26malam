@@ -47,7 +47,7 @@ diet_weightchange <- cricket_abs %>% filter(song_duration !=0) %>%
             xmax= Inf,
             ymin= 0, 
             ymax= Inf, fill="#6bff72")+
-  geom_boxplot(aes(fill=diet), show.legend = FALSE) +
+  geom_boxplot(aes(fill=diet), show.legend = FALSE, outlier.size=0.5) +
   scale_fill_gradient(low="#616161", high="#fcfcfc")+
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
@@ -58,7 +58,7 @@ ggsave("Graphs/diet_weightchange_march23.png", width=14, height=7.5, units="cm",
 
 ##diet, duration----
 diet_duration <- cricket_abs %>% filter(song_duration !=0) %>% ggplot(aes(x=diet, y=song_duration, group=diet))+
-  geom_boxplot(aes(fill=diet), show.legend = FALSE) +
+  geom_boxplot(aes(fill=diet), show.legend = FALSE, outlier.size=0.5) +
   scale_fill_gradient(low="#616161", high="#fcfcfc")+
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
