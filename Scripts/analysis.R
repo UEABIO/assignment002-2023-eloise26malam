@@ -21,10 +21,9 @@ cricket_clean <- rename(cricket_clean, "size_mm"="pronotum",
 ## Error Check ----
 cricket_clean%>%duplicated()%>%sum() #no duplicates
 
-cricket_clean%>% summarise(min=min(song_duration, na.rm=TRUE), 
-              max=max(song_duration, na.rm=TRUE))
-#minimum values not possible as cannot have negative duration
+summary(cricket_clean)
+#minimum value for song duration not possible  
+#cannot have negative duration
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
 cricket_abs #removes neg values
-
 
