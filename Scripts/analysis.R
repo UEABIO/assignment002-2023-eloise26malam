@@ -17,3 +17,14 @@ cricket_clean <- rename(cricket_clean, "size_mm"="pronotum",
                         "weight_change"="delta_smi")
 #names easier to work with 
 #better descriptions of variables
+
+## Error Check ----
+cricket_clean%>%duplicated()%>%sum() #no duplicates
+
+cricket_clean%>% summarise(min=min(song_duration, na.rm=TRUE), 
+              max=max(song_duration, na.rm=TRUE))
+#minimum values not possible as cannot have negative duration
+cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
+cricket_abs #removes neg values
+
+
