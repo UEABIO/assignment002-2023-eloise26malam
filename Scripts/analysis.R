@@ -30,7 +30,8 @@ cricket_abs #removes neg values
 #PLOTS 📊 ----
 ## size, start mass----
 cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
-  geom_point()
+  geom_point()+ geom_smooth(method="lm",    
+                           se=FALSE)
 
 ## diet, weight change ----
 cricket_abs %>% ggplot(aes(x=diet, y=weight_change, group=diet, fill=diet))+
@@ -38,16 +39,22 @@ cricket_abs %>% ggplot(aes(x=diet, y=weight_change, group=diet, fill=diet))+
 
 ##diet, duration----
 cricket_abs %>% ggplot(aes(x=diet, y=song_duration, group=diet, fill=diet))+
-  geom_boxplot()
+  geom_boxplot() 
 
+##high, med, low diet, song----
 high_diet <- cricket_abs %>% filter(diet>=60, song_duration != 0) %>% ggplot(aes(x=song_duration, y=weight_change))+
-  geom_point()
+  geom_point() +  geom_smooth(method="lm",    
+                              se=FALSE)
 high_diet  
 
+mid_diet <- cricket_abs %>% filter(diet==48, song_duration != 0) %>% ggplot(aes(x=song_duration, y=weight_change))+
+  geom_point() + geom_smooth(method="lm",    
+                             se=FALSE)
+mid_diet
+
 low_diet <- cricket_abs %>% filter(diet<=36, song_duration != 0) %>% ggplot(aes(x=song_duration, y=weight_change))+
-  geom_point()
+  geom_point()+ geom_smooth(method="lm",    
+                            se=FALSE)
 low_diet
 
-mid_diet <- cricket_abs %>% filter(diet==48, song_duration != 0) %>% ggplot(aes(x=song_duration, y=weight_change))+
-  geom_point()
-mid_diet
+
