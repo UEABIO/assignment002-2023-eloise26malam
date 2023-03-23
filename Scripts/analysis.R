@@ -84,7 +84,9 @@ low_diet
 
 ##weight change, duration----
 cricket_abs %>% filter(song_duration !=0) %>%
-  ggplot(aes(x=song_duration, y=weight_change,))+
-  geom_point()+geom_smooth(method="lm",    
+  ggplot(aes(x=song_duration, y=weight_change, colour=diet))+
+  geom_point()+geom_smooth(method="lm", colour="BLACK",   
                            se=FALSE)+
+  scale_colour_gradient(low="#5e0902", high="#fc5d4e")+
   theme_classic()
+
