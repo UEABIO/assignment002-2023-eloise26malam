@@ -38,6 +38,7 @@ cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
 ## diet, weight change ----
 diet_weightchange <- cricket_abs %>% filter(song_duration !=0) %>%
   ggplot(aes(x=diet, y=weight_change, group=diet))+
+  theme_classic()+
   geom_rect(xmin= -Inf,
             xmax= Inf,
             ymin= -Inf, 
@@ -56,14 +57,15 @@ diet_weightchange
 ggsave("Graphs/diet_weightchange_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
 ##diet, duration----
-cricket_abs %>% filter(song_duration !=0) %>% ggplot(aes(x=diet, y=song_duration, group=diet))+
+diet_duration <- cricket_abs %>% filter(song_duration !=0) %>% ggplot(aes(x=diet, y=song_duration, group=diet))+
   geom_boxplot(aes(fill=diet), show.legend = FALSE) +
   scale_fill_gradient(low="#616161", high="#fcfcfc")+
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
   scale_y_continuous(name= "Song Duration (minutes)")+
-  theme_minimal()
-
+  theme_classic()
+diet_duration
+ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
 ##high, med, low diet, song----
 high_diet <- cricket_abs %>% filter(diet>=60, song_duration != 0) %>% ggplot(aes(x=song_duration, y=weight_change))+
   geom_point() +  geom_smooth(method="lm",    
