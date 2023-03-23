@@ -1,13 +1,11 @@
-## Title - Exploring the influence of nutrition on the duration of singing in *Gryllodes sigillatus*
+## **Title - Exploring the influence of nutrition on the duration of singing in *Gryllodes sigillatus,* the decorated cricket - does diet quality affect mate signalling?**
 
-By Eloise Malam
+**By Eloise Malam**
 
-### Introduction
+### [Introduction]{.underline}
 
-### Analysis
+### [Analysis]{.underline}
 
-### Results
+### [Results & Discussion]{.underline}
 
-### Discussion
-
-### References
+### [References]{.underline}
