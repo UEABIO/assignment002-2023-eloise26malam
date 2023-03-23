@@ -1,17 +1,17 @@
-# Summative 2 BIO 5023Y
+# Summative 2 - BIO 5023Y
 
-## ✨ Brief introduction
-This is a solo project assignment for module BIO 5023Y - Data Science for Biologists. This assignment requires data cleaning, exploratory analysis, data visualisation & statistical model building and inference.
+## Exploring the influence of nutrition on the duration of singing in *Gryllodes sigillatus,* the decorated cricket - does diet quality affect mate signalling?
 
-*Change this README to represent your project when complete*
+# 🎶🦗
 
-## 🎯 Objectives
- 
-- Analyse one dataset contained within this repository
-- Use Markdown to write a formal lab report: hand the output in separately through Blackboard
-- Include all required Rscripts and Rmd files needed to fully reproduce your report here
-- Submit this repo to the GitHub Classroom by the assignment deadline
+This report looks at the relationships between nutrition, mass, and the length of sexual signalling songs in the decorated cricket.
 
+**Main findings:**
 
+-   The more nutritional the cricket's diet, the more weight they gain
 
+-   The more they weigh, the longer the cricket's singing lasts
 
+**General Conclusion:**
+
+-   Crickets with a more nutritional diet will gain more weight and also have more energy to expend on performing the costly calling song.
