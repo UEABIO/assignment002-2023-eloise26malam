@@ -1,15 +1,18 @@
 ## **Title - Exploring the influence of nutrition on the duration of singing in *Gryllodes sigillatus,* the decorated cricket - does diet quality affect mate signalling?**
 
-**By Eloise Malam**
+### **By Eloise Malam**
 
-### [Introduction]{.underline}
+**ABSTRACT:** The male decorated cricket uses a calling song to attract females. This study looks at the influence of nutrition and weight on the length of this sexual signalling displayed by individuals.
 
-### [Analysis]{.underline}
+### [**Introduction**]{.underline}
 
-### [Results & Discussion]{.underline}
+### [**Analysis**]{.underline}
+
+### [**Results & Discussion**]{.underline}
+
 ```{r, echo=FALSE}
 knitr::include_graphics("../Graphs/diet_weightchange_march23.png")
 
 ```
 
-### [References]{.underline}
+### [**References**]{.underline}
