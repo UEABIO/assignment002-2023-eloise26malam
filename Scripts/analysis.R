@@ -54,9 +54,8 @@ diet_weightchange <- cricket_abs %>% filter(song_duration !=0) %>%
   scale_y_continuous(name= "Weight Change (g)",
                      breaks=seq(-0.060, 0.090, 0.03))
 diet_weightchange
-colorBlindness::cvdPlot() #colours are accessible
 ggsave("Graphs/diet_weightchange_march23.png", width=14, height=7.5, units="cm", dpi=300)
-
+colorBlindness::cvdPlot() #colours are accessible
 ##diet, duration----
 diet_duration <- cricket_abs %>% filter(song_duration !=0) %>% 
   ggplot(aes(x=diet, y=song_duration, group=diet))+
