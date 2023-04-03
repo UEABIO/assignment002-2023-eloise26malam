@@ -98,6 +98,8 @@ colorBlindness::cvdPlot() #colours are accessible
 #MODEL----
 lsmodel1 <- lm(song_duration ~ diet, data=cricket_abs)
 checklsm1 <- performance::check_model(lsmodel1)
+checklsm1
 
+summary(lsmodel1)
 
 
