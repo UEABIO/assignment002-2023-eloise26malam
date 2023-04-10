@@ -109,16 +109,6 @@ cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(c
 lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
 summary(lsmodel_dw)
 
-means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
-
-means_dw
-means_dw %>% 
-  as_tibble() %>% 
-  ggplot(aes(x=diet_category, 
-             y=emmean))+
-  geom_pointrange(aes(
-    ymin=lower.CL, 
-    ymax=upper.CL))
 
 ##Diet, duration ----
 lsmodel_cat <- lm(song_duration ~ diet_category, data=cricket_categories)
@@ -127,3 +117,19 @@ checklsm_cat <- performance::check_model(lsmodel_cat)
 checklsm_cat
 #t value = 
 
+##Emmeans graphs----
+###Diet, weight 
+means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
+group_colour <-c("#d90b15", "#f79011", "#05f52d")
+means_dw
+means_dw %>% 
+  as_tibble() %>% 
+  ggplot(aes(x=diet_category, 
+             y=emmean, colour=diet_category))+
+  scale_colour_manual(values = group_colour)+
+  geom_pointrange(aes(
+    ymin=lower.CL, 
+    ymax=upper.CL))+
+  theme_classic()
+
+              
