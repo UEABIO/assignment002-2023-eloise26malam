@@ -2,7 +2,7 @@
 
 ### **By Eloise Malam**
 
-**ABSTRACT:** The male decorated cricket uses a calling song to attract females. This study looks at the influence of nutrition and weight on the length of this sexual signalling displayed by individuals.
+**ABSTRACT:** The male decorated cricket uses a calling song to attract females. This study looks at the influence of nutrition and weight on the length of this sexual signalling displayed by individuals. It was found that crickets with a higher percentage of nutrition in their diets had both a greater weight increase and a greater song duration. This implies that nutrition is an important factor in a cricket's reproductive ability, possibly because the individuals with a better diet have more resources to allocate towards sexual signalling.
 
 ### [**Introduction**]{.underline}
 
@@ -10,9 +10,13 @@
 
 ### [**Results & Discussion**]{.underline}
 
+##### **DIET AND WEIGHT CHANGE**
+
 ```{r, echo=FALSE}
 knitr::include_graphics("../Graphs/diet_weightchange_march23.png")
 
 ```
+
+##### **DIET AND SONG DURATION**
 
 ### [**References**]{.underline}

@@ -105,7 +105,6 @@ cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(c
                                                                      breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
 
 lsmodel2 <- lm(song_duration ~ diet_category, data=cricket_categories)
-
 summary(lsmodel2)
 checklsm2 <- performance::check_model(lsmodel2)
 checklsm2
