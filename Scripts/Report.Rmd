@@ -14,12 +14,14 @@
 
 I hypothesised that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period. To test this, I compared the weight gain of crickets in the groups of Low, Medium, and High nutrition using a general linear model.
 
+When looking at the two ends of the scale, it was seen that crickets with a diet of high nutritional value (\>60%) gained an average of . , which is
+
 ```{r, echo=FALSE}
 knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-When looking at the two ends of the scale, it was seen that crickets with a diet of high nutritional value (\>60%) gained an average of . , which is
+**Fig.1 - LEFT**: The nutritional percentage of a crickets diet compared to its change in weight over the observational period (n=568). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change is presented for each nutritional category - low (≤36), medium(=48), and high(≥60). Note when comparing the adjacent graphs that the y-ax are on different scales.
 
 ##### **DIET AND SONG DURATION**
 

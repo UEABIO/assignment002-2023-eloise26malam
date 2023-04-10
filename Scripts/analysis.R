@@ -28,54 +28,10 @@ summary(cricket_clean)
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
 cricket_abs #removes neg values
 
-
-
-
-#MODEL----
-lsmodel1 <- lm(song_duration ~ diet, data=cricket_abs)
-checklsm1 <- performance::check_model(lsmodel1)
-checklsm1
-
-##Categorised----
-cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
-                             breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
-#allows easier comparison between groups by reducing num of categories
-
-##Diet, weight-----
-lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
-summary(lsmodel_dw)
-
-
-##Diet, duration ----
-lsmodel_cat <- lm(song_duration ~ diet_category, data=cricket_categories)
-summary(lsmodel_cat)
-checklsm_cat <- performance::check_model(lsmodel_cat)
-checklsm_cat
-#t value = 
-
-
 #PLOTS 📊 ----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
-##Emmeans graphs----
-###Diet, weight -----
-means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
-means_dw
 
-plot_means_dw<-means_dw %>% 
-  as_tibble() %>% 
-  ggplot(aes(x=diet_category, 
-             y=emmean, colour=diet_category))+
-  scale_colour_manual(values = group_colour)+
-  geom_pointrange(aes(
-    ymin=lower.CL, 
-    ymax=upper.CL), show.legend = FALSE)+
-  labs(x="Diet Category", y="Mean Weight Change (g)")+
-  scale_y_continuous(position="right")+
-  theme_classic()+
-  theme(axis.title = element_text(size = 7))
-
-plot_means_dw
 ## size, start mass----
 cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
   geom_point()+ geom_smooth(method="lm",    
@@ -127,15 +83,54 @@ cricket_abs %>% filter(song_duration !=0) %>%
   theme_classic()
 colorBlindness::cvdPlot() #colours are accessible
 
+
+#MODEL----
+lsmodel1 <- lm(song_duration ~ diet, data=cricket_abs)
+checklsm1 <- performance::check_model(lsmodel1)
+checklsm1
+
+##Categorised----
+cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
+                             breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+#allows easier comparison between groups by reducing num of categories
+
+##Diet, weight-----
+lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
+summary(lsmodel_dw)
+
+
+##Diet, duration ----
+lsmodel_cat <- lm(song_duration ~ diet_category, data=cricket_categories)
+summary(lsmodel_cat)
+checklsm_cat <- performance::check_model(lsmodel_cat)
+checklsm_cat
+#t value = 
+
+##Emmeans Plots----
+###Diet, weight -----
+means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
+means_dw
+
+plot_means_dw<-means_dw %>% 
+  as_tibble() %>% 
+  ggplot(aes(x=diet_category, 
+             y=emmean, colour=diet_category))+
+  scale_colour_manual(values = group_colour)+
+  geom_pointrange(aes(
+    ymin=lower.CL, 
+    ymax=upper.CL), show.legend = FALSE)+
+  labs(x="Diet Category", y="Mean Weight Change (g)")+
+  scale_y_continuous(position="right")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 7))
+
+plot_means_dw
+
 #PATCHWORK 🧶----
-layout <- "
-AAB
-AAB
-AAB
-AA#"
+
 
 patchwork <- diet_weightchange + plot_means_dw + 
-  plot_layout(design= layout, guides = "collect", widths = c(2, 1))
+  plot_layout (guides = "collect", widths = c(2, 1))
  
 patchwork
 
