@@ -100,16 +100,30 @@ lsmodel1 <- lm(song_duration ~ diet, data=cricket_abs)
 checklsm1 <- performance::check_model(lsmodel1)
 checklsm1
 
-##Categorised model----
+##Categorised----
 cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
-                                                                     breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+                             breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+#allows easier comparison between groups by reducing num of categories
 
+##Diet, weight-----
+lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
+summary(lsmodel_dw)
+
+means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
+
+means_dw
+means_dw %>% 
+  as_tibble() %>% 
+  ggplot(aes(x=diet_category, 
+             y=emmean))+
+  geom_pointrange(aes(
+    ymin=lower.CL, 
+    ymax=upper.CL))
+
+##Diet, duration ----
 lsmodel_cat <- lm(song_duration ~ diet_category, data=cricket_categories)
 summary(lsmodel_cat)
 checklsm_cat <- performance::check_model(lsmodel_cat)
 checklsm_cat
 #t value = 
 
-#Diet, weight-----
-lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
-summary(lsmodel_dw)
