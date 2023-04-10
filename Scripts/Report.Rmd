@@ -15,7 +15,7 @@
 I hypothesised that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period. To test this, I compared the weight gain of crickets in the groups of Low, Medium, and High nutrition using a general linear model.
 
 ```{r, echo=FALSE}
-knitr::include_graphics("../Graphs/diet_weightchange_march23.png")
+knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
