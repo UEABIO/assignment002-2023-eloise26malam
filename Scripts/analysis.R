@@ -72,9 +72,10 @@ plot_means_dw<-means_dw %>%
     ymax=upper.CL), show.legend = FALSE)+
   labs(x="Diet Category", y="Mean Weight Change (g)")+
   scale_y_continuous(position="right")+
-  theme_classic()
+  theme_classic()+
+  theme(axis.title = element_text(size = 7))
 
-
+plot_means_dw
 ## size, start mass----
 cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
   geom_point()+ geom_smooth(method="lm",    
@@ -97,7 +98,8 @@ diet_weightchange <- cricket_abs %>% filter(song_duration !=0) %>%
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
   scale_y_continuous(name= "Weight Change (g)",
-                     breaks=seq(-0.060, 0.090, 0.03))
+                     breaks=seq(-0.060, 0.090, 0.03))+
+  theme(axis.title = element_text(size = 7))
 diet_weightchange
 ggsave("Graphs/diet_weightchange_march23.png", width=14, height=7.5, units="cm", dpi=300)
 colorBlindness::cvdPlot() #colours are accessible
@@ -126,6 +128,15 @@ cricket_abs %>% filter(song_duration !=0) %>%
 colorBlindness::cvdPlot() #colours are accessible
 
 #PATCHWORK 🧶----
+layout <- "
+AAB
+AAB
+AAB
+AA#"
 
-diet_weightchange + plot_means_dw + plot_layout(guides = "collect", widths = c(2, 1))
+patchwork <- diet_weightchange + plot_means_dw + 
+  plot_layout(design= layout, guides = "collect", widths = c(2, 1))
+ 
+patchwork
+
 ggsave("Graphs/dw_means_april23.png", width=14, height=7.5, units="cm", dpi=300)
