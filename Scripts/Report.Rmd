@@ -30,7 +30,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 Based on the results above which illustrated a greater weight gain in crickets with a better diet, I further hypothesized that the group with higher nutrition would also have a greater song duration due to an increased amount of resources to allocate to the costly action.
 
 ```{r, echo=FALSE}
-knitr::include_graphics("../Graphs/diet_duration_march23.png")
+knitr::include_graphics("../Graphs/dd_means_april23.png")
 
 ```
 

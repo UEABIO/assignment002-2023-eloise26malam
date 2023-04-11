@@ -28,6 +28,9 @@ summary(cricket_clean)
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
 cricket_abs #removes neg values
 
+##Mutate----
+cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
+                                                                    breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
 #PLOTS 📊 ----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
@@ -78,7 +81,7 @@ diet_duration2 <- cricket_abs %>% filter(song_duration !=0) %>%
   ggplot(aes(x=diet, y=song_duration, group=diet))+
   geom_boxplot(aes(fill=diet), show.legend = FALSE, outlier.size=0.5) +
   scale_fill_gradient2(low="#d90b15", mid="#f79011", high="#05f52d",
-                        midpoint=48)+
+                       midpoint=48)+
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
   scale_y_continuous(name= "Song Duration (minutes)")+
@@ -86,7 +89,7 @@ diet_duration2 <- cricket_abs %>% filter(song_duration !=0) %>%
   theme(axis.title = element_text(size = 7))
 diet_duration2
 
-diet_duration3 <- cricket_abs %>% filter(song_duration !=0) %>% 
+diet_duration3 <- cricket_categories %>% filter(song_duration !=0) %>% 
   ggplot(aes(x=diet, y=song_duration,group=diet))+
   geom_rect(xmin= -Inf,
             xmax= 42,
@@ -100,8 +103,7 @@ diet_duration3 <- cricket_abs %>% filter(song_duration !=0) %>%
             xmax= Inf,
             ymin= -Inf, 
             ymax=Inf, fill="#05f52d")+
-  geom_boxplot(aes(fill=diet), show.legend = FALSE, outlier.size=0.5) +
-  scale_fill_gradient(low="#616161", high="#fcfcfc")+
+  geom_boxplot(aes(), show.legend = FALSE, outlier.size=0.5, fill="#fcfcfc") +
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
   scale_y_continuous(name= "Song Duration (minutes)")+
@@ -127,8 +129,7 @@ checklsm1 <- performance::check_model(lsmodel1)
 checklsm1
 
 ##Categorised----
-cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
-                             breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+
 #allows easier comparison between groups by reducing num of categories
 
 ##Diet, weight-----
@@ -192,6 +193,8 @@ patchwork_dw
 ggsave("Graphs/dw_means_april23.png", width=14, height=7.5, units="cm", dpi=300)
 
 ##Diet, duration----
-patchwork_dd <- diet_duration + plot_means_dd + 
+patchwork_dd <- diet_duration3 + plot_means_dd + 
   plot_layout (guides = "collect", widths = c(2, 1))
 patchwork_dd
+
+ggsave("Graphs/dd_means_april23.png", width=14, height=7.5, units="cm", dpi=300)
