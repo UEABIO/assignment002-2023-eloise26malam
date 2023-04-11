@@ -24,7 +24,7 @@ cricket_clean%>%duplicated()%>%sum() #no duplicates
 
 summary(cricket_clean)
 #minimum value for song duration not possible  
-#cannot have negative duration
+#as cannot have negative duration
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
 cricket_abs #removes neg values
 
@@ -69,7 +69,8 @@ diet_duration <- cricket_abs %>% filter(song_duration !=0) %>%
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
   scale_y_continuous(name= "Song Duration (minutes)")+
-  theme_classic()
+  theme_classic()+
+  theme(axis.title = element_text(size = 7))
 diet_duration 
 ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
@@ -79,7 +80,8 @@ cricket_abs %>% filter(song_duration !=0) %>%
   ggplot(aes(x=song_duration, y=weight_change, colour=diet))+
   geom_point()+geom_smooth(method="lm", colour="BLACK",   
                            se=FALSE)+
-  scale_colour_gradient(low="#2b0002", high="#05f52d")+
+  scale_colour_gradient2(low="#d90b15", mid="#f79011", high="#05f52d",
+                         midpoint=48)+
   theme_classic()
 colorBlindness::cvdPlot() #colours are accessible
 
@@ -104,7 +106,7 @@ lsmodel_cat <- lm(song_duration ~ diet_category, data=cricket_categories)
 summary(lsmodel_cat)
 checklsm_cat <- performance::check_model(lsmodel_cat)
 checklsm_cat
-#t value = 
+
 
 ##Emmeans Plots----
 ###Diet, weight -----
