@@ -128,6 +128,24 @@ plot_means_dw<-means_dw %>%
 
 plot_means_dw
 
+### Diet, duration----
+means_dd <- emmeans::emmeans(lsmodel_cat, specs = ~ diet_category)
+means_dd
+
+plot_means_dd<-means_dd %>% 
+  as_tibble() %>% 
+  ggplot(aes(x=diet_category, 
+             y=emmean, colour=diet_category))+
+  scale_colour_manual(values = group_colour)+
+  geom_pointrange(aes(
+    ymin=lower.CL, 
+    ymax=upper.CL), show.legend = FALSE)+
+  labs(x="Diet Category", y="Mean Song Duration")+
+  scale_y_continuous(position="right")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 7))
+plot_means_dd
+
 #PATCHWORK 🧶----
 
 
