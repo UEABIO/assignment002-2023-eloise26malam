@@ -74,6 +74,41 @@ diet_duration <- cricket_abs %>% filter(song_duration !=0) %>%
 diet_duration 
 ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
+diet_duration2 <- cricket_abs %>% filter(song_duration !=0) %>% 
+  ggplot(aes(x=diet, y=song_duration, group=diet))+
+  geom_boxplot(aes(fill=diet), show.legend = FALSE, outlier.size=0.5) +
+  scale_fill_gradient2(low="#d90b15", mid="#f79011", high="#05f52d",
+                        midpoint=48)+
+  scale_x_continuous(name="Diet (nutritional %)", 
+                     breaks=seq(12,84,12))+
+  scale_y_continuous(name= "Song Duration (minutes)")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 7))
+diet_duration2
+
+diet_duration3 <- cricket_abs %>% filter(song_duration !=0) %>% 
+  ggplot(aes(x=diet, y=song_duration,group=diet))+
+  geom_rect(xmin= -Inf,
+            xmax= 42,
+            ymin= -Inf, 
+            ymax=Inf, fill="#d90b15")+
+  geom_rect(xmin= 42,
+            xmax= 54,
+            ymin= -Inf, 
+            ymax=Inf, fill="#f79011")+
+  geom_rect(xmin= 54,
+            xmax= Inf,
+            ymin= -Inf, 
+            ymax=Inf, fill="#05f52d")+
+  geom_boxplot(aes(fill=diet), show.legend = FALSE, outlier.size=0.5) +
+  scale_fill_gradient(low="#616161", high="#fcfcfc")+
+  scale_x_continuous(name="Diet (nutritional %)", 
+                     breaks=seq(12,84,12))+
+  scale_y_continuous(name= "Song Duration (minutes)")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 7))
+  
+diet_duration3
 
 ##weight change, duration----
 cricket_abs %>% filter(song_duration !=0) %>%
@@ -148,10 +183,15 @@ plot_means_dd
 
 #PATCHWORK 🧶----
 
-
-patchwork <- diet_weightchange + plot_means_dw + 
+##Diet, weight----
+patchwork_dw <- diet_weightchange + plot_means_dw + 
   plot_layout (guides = "collect", widths = c(2, 1))
  
-patchwork
+patchwork_dw
 
 ggsave("Graphs/dw_means_april23.png", width=14, height=7.5, units="cm", dpi=300)
+
+##Diet, duration----
+patchwork_dd <- diet_duration + plot_means_dd + 
+  plot_layout (guides = "collect", widths = c(2, 1))
+patchwork_dd
