@@ -3,6 +3,7 @@
 library(tidyverse)
 library(ggplot2)
 library(colorBlindness)
+library(rstatix)
 library(patchwork)
 ## Import data 📥 ----
 cricket_original <- read_csv("Data/cricket_song.csv")
@@ -28,9 +29,13 @@ summary(cricket_clean)
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
 cricket_abs #removes neg values
 
+cricket_weight <- cricket_abs %>% drop_na(weight_change)
+#so that rows with no data on weight change aren't included in relevant analysis
+
 ##Mutate----
 cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
-                                                                    breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+                      breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+#allows comparison between groups
 #PLOTS 📊 ----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
@@ -41,7 +46,7 @@ cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
                             se=FALSE)
 
 ## diet, weight change ----
-diet_weightchange <- cricket_abs %>% filter(song_duration !=0) %>%
+diet_weightchange <- cricket_weight %>% filter(song_duration !=0) %>%
   ggplot(aes(x=diet, y=weight_change, group=diet))+
   theme_classic()+
   geom_rect(xmin= -Inf,
@@ -75,7 +80,6 @@ diet_duration <- cricket_abs %>% filter(song_duration !=0) %>%
   theme_classic()+
   theme(axis.title = element_text(size = 7))
 diet_duration 
-ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
 diet_duration2 <- cricket_abs %>% filter(song_duration !=0) %>% 
   ggplot(aes(x=diet, y=song_duration, group=diet))+
@@ -111,9 +115,10 @@ diet_duration3 <- cricket_categories %>% filter(song_duration !=0) %>%
   theme(axis.title = element_text(size = 7))
   
 diet_duration3
+ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
 ##weight change, duration----
-cricket_abs %>% filter(song_duration !=0) %>%
+cricket_weight %>% filter(song_duration !=0) %>%
   ggplot(aes(x=song_duration, y=weight_change, colour=diet))+
   geom_point()+geom_smooth(method="lm", colour="BLACK",   
                            se=FALSE)+
@@ -123,14 +128,14 @@ cricket_abs %>% filter(song_duration !=0) %>%
 colorBlindness::cvdPlot() #colours are accessible
 
 
-#MODEL----
-lsmodel1 <- lm(song_duration ~ diet, data=cricket_abs)
-checklsm1 <- performance::check_model(lsmodel1)
-checklsm1
+#MODEL 📈----
+cricket_abs %>% cor_test(diet, song_duration)
+#cor=0.43 (positive correlation)
+dd_lm <- lm(song_duration ~ diet, data=cricket_abs)
+dd_lm
+performance::check_model(dd_lm)
+summary(dd_lm)
 
-##Categorised----
-
-#allows easier comparison between groups by reducing num of categories
 
 ##Diet, weight-----
 lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
@@ -181,6 +186,7 @@ plot_means_dd<-means_dd %>%
   theme_classic()+
   theme(axis.title = element_text(size = 7))
 plot_means_dd
+
 
 #PATCHWORK 🧶----
 
