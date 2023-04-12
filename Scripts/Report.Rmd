@@ -25,7 +25,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: The nutritional percentage of a crickets diet compared to its change in weight over the observational period (n=568). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change is presented for each nutritional category - low (≤36), medium(=48), and high(≥60). Note when comparing the adjacent graphs that the y-ax are on different scales.
+**Fig.1 - LEFT**: The nutritional percentage of a crickets diet compared to its change in weight over the observational period (n=568). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The estimated marginal mean weight change is presented for each nutritional category - low (≤36%), medium(=48%), and high(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
 
 ##### **DIET AND SONG DURATION**
 
