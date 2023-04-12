@@ -10,6 +10,8 @@
 
 When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
+For some calculations and visualisations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of categories.
+
 ### [**Results & Discussion**]{.underline}
 
 ##### **DIET AND WEIGHT CHANGE**
