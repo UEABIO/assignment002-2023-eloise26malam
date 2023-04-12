@@ -8,7 +8,7 @@
 
 ### [**Analysis**]{.underline}
 
-When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered, as negative values are valid for other variables such as weight change.
+When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
 ### [**Results & Discussion**]{.underline}
 
