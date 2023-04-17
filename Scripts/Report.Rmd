@@ -12,6 +12,10 @@ When investigating the minimum and maximum data points, a negative value for son
 
 For some calculations and visualisations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of dietary categories from 7 to 3.
 
+For analysis and models that involved the weight change variable, any rows with an NA in this column were removed.
+
+Two separate linear models were applied to the data - one to investigate the affect of nutrition on weight change, with an additional model looking at nutritional influence on song duration. This was done as there was found to be no significant interactive effect on song duration when both weight change and nutrition were simultaneously taken into account (ANOVA *F=*1.7525*, P=*0.1743).
+
 ### [**Results & Discussion**]{.underline}
 
 ##### **DIET AND WEIGHT CHANGE**
@@ -25,7 +29,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: The nutritional percentage of a crickets diet compared to its change in weight over the observational period of one week. The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The estimated marginal mean weight change is presented for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
+**Fig.1 - LEFT**: The nutritional percentage of a crickets diet (12-84%) compared to its change in weight over the observational period of one week (n=539). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The estimated marginal mean weight change is presented for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
 
 ##### **DIET AND SONG DURATION**
 
