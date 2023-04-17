@@ -26,15 +26,16 @@ cricket_clean%>%duplicated()%>%sum() #no duplicates
 summary(cricket_clean)
 #minimum value for song duration not possible  
 #as cannot have negative duration
-cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration))
-cricket_abs #removes neg values
+cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration)) 
+cricket_abs#removes neg values
 
+##Mutate ----
 cricket_weight <- cricket_abs %>% drop_na(weight_change)
 #so that rows with no data on weight change aren't included in relevant analysis
 
-##Mutate----
 cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
                       breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
+
 #allows comparison between groups
 #PLOTS 📊 ----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
@@ -135,16 +136,15 @@ cricket_abs %>% cor_test(diet, song_duration)
 
 lsmodel_dd <- lm(song_duration ~ diet, data=cricket_abs)
 summary(lsmodel_dd)
+performance::check_model(lsmodel_dd)
+#not perfect - check for outliers
 
 performance::check_model(lsmodel_dd, check=c("normality","qq"))
 #slight left skew on QQ plot, upper and lower ends do not fully conform
-performance::check_model(lsmodel_dd, check="homogeneity")
-#line is fairly flat, only lifting at the left side of the plot
 performance::check_model(lsmodel_dd, check="outliers")
-plot(lsmodel_dd, which=c(4,4))
-#no points outside contour lines
+#outliers- no points outside contour lines
 #no data points need removing
-
+#model is not perfect fit but still suitable for use
 
 
 ##Diet, weight-----
@@ -154,14 +154,32 @@ summary(lsmodel_dw)
 cricket_categories %>% cor_test(weight_change, diet)
 #cor=0.51 (positive correlation)
 
+performance::check_model(lsmodel_dw)
+#not perfect but fairly good fit
 performance::check_model(lsmodel_dw, check=c("normality","qq"))
 #both very good fits
-performance::check_model(lsmodel_dw, check="homogeneity")
-#small curve but generally fits
 performance::check_model(lsmodel_dw, check="outliers")
 #no outliers detected
+#model is suitable to use
 
+##Interactions----
 
+ls_int <- lm(song_duration ~ weight_change + # main effect
+               diet_category + # main effect
+             weight_change:diet_category, # interaction term
+           data = cricket_categories)
+ls_int %>%broom::tidy(conf.int = T)
+summary(ls_int)
+
+drop1(ls_int, test= "F")
+#no significant interactive affect between diet & weight change
+#remove interaction term
+
+ls_int2 <- lm(song_duration ~ diet_category + # main effect
+               weight_change, data= cricket_categories)
+summary(ls_int2)
+
+#ADDITIONAL PLOTS----
 
 ##Emmeans Plots----
 ###Diet, weight -----
@@ -202,9 +220,9 @@ plot_means_dd<-means_dd %>%
 plot_means_dd
 
 
-#PATCHWORK 🧶----
+##Patchworks 🧶----
 
-##Diet, weight----
+###Diet, weight----
 patchwork_dw <- diet_weightchange + plot_means_dw + 
   plot_layout (guides = "collect", widths = c(2, 1))
  
@@ -212,7 +230,7 @@ patchwork_dw
 
 ggsave("Graphs/dw_means_april23.png", width=14, height=7.5, units="cm", dpi=300)
 
-##Diet, duration----
+###Diet, duration----
 patchwork_dd <- diet_duration3 + plot_means_dd + 
   plot_layout (guides = "collect", widths = c(2, 1))
 patchwork_dd
