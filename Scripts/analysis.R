@@ -129,24 +129,38 @@ colorBlindness::cvdPlot() #colours are accessible
 
 
 #MODEL 📈----
+##Diet, Duration-----
 cricket_abs %>% cor_test(diet, song_duration)
 #cor=0.43 (positive correlation)
-dd_lm <- lm(song_duration ~ diet, data=cricket_abs)
-dd_lm
-performance::check_model(dd_lm)
-summary(dd_lm)
+
+lsmodel_dd <- lm(song_duration ~ diet, data=cricket_abs)
+summary(lsmodel_dd)
+
+performance::check_model(lsmodel_dd, check=c("normality","qq"))
+#slight left skew on QQ plot, upper and lower ends do not fully conform
+performance::check_model(lsmodel_dd, check="homogeneity")
+#line is fairly flat, only lifting at the left side of the plot
+performance::check_model(lsmodel_dd, check="outliers")
+plot(lsmodel_dd, which=c(4,4))
+#no points outside contour lines
+#no data points need removing
+
 
 
 ##Diet, weight-----
 lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
 summary(lsmodel_dw)
 
+cricket_categories %>% cor_test(weight_change, diet)
+#cor=0.51 (positive correlation)
 
-##Diet, duration ----
-lsmodel_cat <- lm(song_duration ~ diet_category, data=cricket_categories)
-summary(lsmodel_cat)
-checklsm_cat <- performance::check_model(lsmodel_cat)
-checklsm_cat
+performance::check_model(lsmodel_dw, check=c("normality","qq"))
+#both very good fits
+performance::check_model(lsmodel_dw, check="homogeneity")
+#small curve but generally fits
+performance::check_model(lsmodel_dw, check="outliers")
+#no outliers detected
+
 
 
 ##Emmeans Plots----
@@ -170,7 +184,7 @@ plot_means_dw<-means_dw %>%
 plot_means_dw
 
 ### Diet, duration----
-means_dd <- emmeans::emmeans(lsmodel_cat, specs = ~ diet_category)
+means_dd <- emmeans::emmeans(lsmodel_dd, specs = ~ diet_category)
 means_dd
 
 plot_means_dd<-means_dd %>% 
