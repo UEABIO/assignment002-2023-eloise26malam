@@ -10,7 +10,7 @@
 
 When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
-For some calculations and visualisations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of categories.
+For some calculations and visualisations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of dietary categories from 7 to 3.
 
 ### [**Results & Discussion**]{.underline}
 
@@ -25,7 +25,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: The nutritional percentage of a crickets diet compared to its change in weight over the observational period (n=568). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The estimated marginal mean weight change is presented for each nutritional category - low (≤36%), medium(=48%), and high(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
+**Fig.1 - LEFT**: The nutritional percentage of a crickets diet compared to its change in weight over the observational period of one week. The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The estimated marginal mean weight change is presented for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
 
 ##### **DIET AND SONG DURATION**
 
@@ -35,5 +35,7 @@ Based on the results above which illustrated a greater weight gain in crickets w
 knitr::include_graphics("../Graphs/dd_means_april23.png")
 
 ```
+
+**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet compared to the total length of time (in seconds) spent singing over the observational period of 1 week. The colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The estimated marginal mean song duration is presented for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
 
 ### [**References**]{.underline}
