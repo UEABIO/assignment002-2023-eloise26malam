@@ -76,7 +76,7 @@ diet_duration <- cricket_abs %>% filter(song_duration !=0) %>%
   scale_fill_gradient(low="#616161", high="#fcfcfc")+
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
-  scale_y_continuous(name= "Song Duration (minutes)")+
+  scale_y_continuous(name= "Song Duration (seconds)")+
   theme_classic()+
   theme(axis.title = element_text(size = 7))
 diet_duration 
@@ -88,7 +88,7 @@ diet_duration2 <- cricket_abs %>% filter(song_duration !=0) %>%
                        midpoint=48)+
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
-  scale_y_continuous(name= "Song Duration (minutes)")+
+  scale_y_continuous(name= "Song Duration (seconds)")+
   theme_classic()+
   theme(axis.title = element_text(size = 7))
 diet_duration2
@@ -110,7 +110,7 @@ diet_duration3 <- cricket_categories %>% filter(song_duration !=0) %>%
   geom_boxplot(aes(), show.legend = FALSE, outlier.size=0.5, fill="#fcfcfc") +
   scale_x_continuous(name="Diet (nutritional %)", 
                      breaks=seq(12,84,12))+
-  scale_y_continuous(name= "Song Duration (minutes)")+
+  scale_y_continuous(name= "Song Duration (seconds)")+
   theme_classic()+
   theme(axis.title = element_text(size = 7))
   
