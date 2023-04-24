@@ -1,7 +1,6 @@
 #SET UP----
 ## Packages 🎁 ----
 library(tidyverse)
-library(ggplot2)
 library(colorBlindness)
 library(rstatix)
 library(patchwork)
@@ -27,7 +26,7 @@ summary(cricket_clean)
 #minimum value for song duration not possible  
 #as cannot have negative duration
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration)) 
-cricket_abs#removes neg values
+cricket_abs#removes neg values for song duration
 
 ##Mutate ----
 cricket_weight <- cricket_abs %>% drop_na(weight_change)
@@ -40,6 +39,10 @@ cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(c
 #PLOTS 📊 ----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
+cricket_categories %>% drop_na(song_duration) %>% filter(song_duration !=0)%>%
+  ggplot(aes(x=weight_change, y=song_duration, colour=diet_category))+
+  geom_point()+ geom_smooth(method="lm",    
+                            se=FALSE)
 
 ## size, start mass----
 cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
