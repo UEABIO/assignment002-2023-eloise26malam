@@ -41,11 +41,14 @@ group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
 cricket_categories %>% drop_na(song_duration) %>% filter(song_duration !=0)%>%
   ggplot(aes(x=weight_change, y=song_duration, colour=diet_category))+
-  geom_point()+ geom_smooth(method="lm",    
-                            se=FALSE)
+  geom_point()+ geom_jitter()+
+  geom_smooth(method="lm",se=FALSE)
 
 ## size, start mass----
 cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
+  geom_point()+ geom_smooth(method="lm",    
+                            se=FALSE)
+cricket_abs %>% ggplot(aes(x=size_mm, y=song_duration))+
   geom_point()+ geom_smooth(method="lm",    
                             se=FALSE)
 
@@ -181,6 +184,16 @@ drop1(ls_int, test= "F")
 ls_int2 <- lm(song_duration ~ diet_category + # main effect
                weight_change, data= cricket_categories)
 summary(ls_int2)
+## Test model----
+lsmodel1 <- lm(song_duration ~ diet_category + weight_change + size_mm
+               + weight_change:diet_category
+               + size_mm:weight_change, data=cricket_categories)
+performance::check_model(lsmodel1, check="outliers")
+#no outliers
+performance::check_model(lsmodel1, check="qq")
+performance::check_model(lsmodel1, check="homogeneity")
+#not flat at all - needs improvement
+
 
 #ADDITIONAL PLOTS----
 
