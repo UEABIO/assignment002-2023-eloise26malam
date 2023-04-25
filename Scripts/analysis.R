@@ -193,6 +193,8 @@ means <- cricket_categories %>%                           # Get mean & standard 
                     sd = sd), na.rm=TRUE) %>% 
   as.data.frame()
 means
+
+
 ###Diet, Weight -----
 means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
 means_dw
@@ -210,6 +212,8 @@ plot_means_dw<-means_dw %>%
   theme(axis.title = element_text(size = 7))
 plot_means_dw
 
+cricket_categories%>% ggplot(aes(x = diet_category, y = weight_change)) + 
+  geom_point(stat = "summary", fun = "mean")
 ### Diet, Duration----
 means_dd <- emmeans::emmeans(lsmodel1, specs = ~ diet_category, by="song_duration")
 means_dd
@@ -228,6 +232,11 @@ plot_means_dd<-means_dd %>%
   theme(axis.title = element_text(size = 7))
 plot_means_dd
 
+cricket_categories%>% ggplot(aes(x = diet_category, 
+                                 y = song_duration, 
+                                 colour=diet_category)) + 
+  geom_point(stat = "summary", fun = "mean")+
+  scale_colour_manual(values = group_colour)
 
 ##Patchworks 🧶----
 
