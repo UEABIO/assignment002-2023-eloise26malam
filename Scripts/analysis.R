@@ -185,15 +185,24 @@ ls_int2 <- lm(song_duration ~ diet_category + # main effect
                weight_change, data= cricket_categories)
 summary(ls_int2)
 ## Test model----
-lsmodel1 <- lm(song_duration ~ diet_category + weight_change + size_mm
-               + weight_change:diet_category
-               + size_mm:weight_change, data=cricket_categories)
+lsmodel1 <- lm(song_duration+1 ~ diet_category + weight_change +size_mm
+               + weight_change:diet_category, data=cricket_categories)
 performance::check_model(lsmodel1, check="outliers")
 #no outliers
 performance::check_model(lsmodel1, check="qq")
+#slight curve, particularly at lower end 
 performance::check_model(lsmodel1, check="homogeneity")
-#not flat at all - needs improvement
+#not flat - could be improved
 
+MASS::boxcox(lsmodel1)
+# 0 is outside the conf interval so log data may not help
+lsmodel2 <- lm(log(song_duration+1) ~ diet_category + weight_change + size_mm
+               + weight_change:diet_category
+               + size_mm:weight_change, data=cricket_categories)
+
+performance::check_model(lsmodel2, check="qq")
+performance::check_model(lsmodel2, check="homogeneity")
+#even worse fit
 
 #ADDITIONAL PLOTS----
 
