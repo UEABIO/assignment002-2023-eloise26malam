@@ -239,7 +239,7 @@ data_summary <- function(data, varname, groupnames){
   return(data_sum)
 }
 
-## Weight, diet----
+### Weight, diet----
 summary_weight <- data_summary(cricket_categories, varname="weight_change", 
                     groupnames="diet_category")
 plot_means_dw <- ggplot(summary_weight, aes(x=diet_category, y=weight_change, 
@@ -255,35 +255,21 @@ plot_means_dw <- ggplot(summary_weight, aes(x=diet_category, y=weight_change,
   theme(axis.title = element_text(size = 7))
 plot_means_dw
 
-
-### Diet, Duration----
-means_dd <- emmeans::emmeans(lsmodel1, specs = ~ diet_category, by="song_duration")
-
-### Diet, Duration----
-means_dd <- emmeans::emmeans(lsmodel_dd, specs = ~ diet_category)
-
-means_dd
-
-plot_means_dd<-means_dd %>% 
-  as_tibble() %>% 
-  ggplot(aes(x=diet_category, 
-             y=emmean, colour=diet_category))+
+###Duration, diet----
+summary_duration <- data_summary(cricket_categories, varname="song_duration", 
+                               groupnames="diet_category")
+plot_means_dd <- ggplot(summary_duration, aes(x=diet_category, y=song_duration, 
+                                            group=diet_category, colour=diet_category)) + 
+  geom_pointrange(aes(ymin=song_duration-sd, ymax=song_duration+sd), 
+                  show.legend = FALSE)+
   scale_colour_manual(values = group_colour)+
-  geom_pointrange(aes(
-    ymin=lower.CL, 
-    ymax=upper.CL), show.legend = FALSE)+
-  labs(x="Diet Category", y="Mean Song Duration")+
+  geom_label(aes(label=c(4.513, 6.314, 7.393)), 
+             size=2, show.legend = FALSE)+
+  labs(x="Diet Category", y="Mean Song Duration (seconds)")+
   scale_y_continuous(position="right")+
   theme_classic()+
   theme(axis.title = element_text(size = 7))
 plot_means_dd
-
-cricket_categories%>% ggplot(aes(x = diet_category, 
-                                 y = song_duration, 
-                                 colour=diet_category)) + 
-  geom_point(stat = "summary", fun = "mean")+
-  scale_colour_manual(values = group_colour)
-
 ##Patchworks 🧶----
 
 ###Diet, weight----
