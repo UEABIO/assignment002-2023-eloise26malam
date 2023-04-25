@@ -226,17 +226,29 @@ means <- cricket_categories %>%                           # Get mean & standard 
   as.data.frame()
 means
 
-###Diet, Weight -----
-means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
-means_dw
-plot_means_dw<-means_dw %>% 
-  as_tibble() %>% 
-  ggplot(aes(x=diet_category, 
-             y=emmean, colour=diet_category))+
+##Means----
+data_summary <- function(data, varname, groupnames){
+  require(plyr)
+  summary_func <- function(x, col){
+    c(mean = mean(x[[col]], na.rm=TRUE),
+      sd = sd(x[[col]], na.rm=TRUE))
+  }
+  data_sum<-ddply(data, groupnames, .fun=summary_func,
+                  varname)
+  data_sum <- rename(data_sum, c("mean" = varname))
+  return(data_sum)
+}
+
+## Weight, diet----
+summary_weight <- data_summary(cricket_categories, varname="weight_change", 
+                    groupnames="diet_category")
+plot_means_dw <- ggplot(summary_weight, aes(x=diet_category, y=weight_change, 
+                           group=diet_category, colour=diet_category)) + 
+  geom_pointrange(aes(ymin=weight_change-sd, ymax=weight_change+sd), 
+                  show.legend = FALSE)+
   scale_colour_manual(values = group_colour)+
-  geom_pointrange(aes(
-    ymin=lower.CL, 
-    ymax=upper.CL), show.legend = FALSE)+
+  geom_label(aes(label=c(0.00359, 0.0151, 0.0273)), 
+             size=2, show.legend = FALSE)+
   labs(x="Diet Category", y="Mean Weight Change (g)")+
   scale_y_continuous(position="right")+
   theme_classic()+
@@ -244,8 +256,6 @@ plot_means_dw<-means_dw %>%
 plot_means_dw
 
 
-cricket_categories%>% ggplot(aes(x = diet_category, y = weight_change)) + 
-  geom_point(stat = "summary", fun = "mean")
 ### Diet, Duration----
 means_dd <- emmeans::emmeans(lsmodel1, specs = ~ diet_category, by="song_duration")
 
