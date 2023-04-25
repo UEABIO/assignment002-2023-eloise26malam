@@ -10,19 +10,21 @@ bibliography: references.bib
 
 ### [**Introduction**]{.underline}
 
-*Gryllodes sigillatus* is a species of cricket known by many names including decorated, banded, and tropical house cricket.
-
 A common occurrence in nature is males of a species competing against each other for the opportunity to mate with a female [@cox1977]. These competitions can manifest as direct antagonism where males get into a physical conflict. Such is the case with red deer, as growing larger antlers to fight with correlates to a greater level of reproductive success [@kruuk2002]. The other way the males can outshine their peers is through courtship displays which are aimed to impress the females. A well-known example of this includes male birds such as peacocks sporting a large ornamental plumage. In the wild, this colourful addition could be seen as a counter-intuitive for survival, making it more difficult to hide from and escape predators [@burk1982]. However, this is exactly why it is so attractive to females of the species - If an individual can survive despite their handicap they must be of good fitness, a quality that females will want to pass on to their offspring [@andersson1986]. As well as physical traits, many mating displays come in the form of a dance or song, as is the case with the decorated cricket detailed in this paper.
 
+*Gryllodes sigillatus* is a species of cricket known by many names including decorated, banded, and tropical house cricket.
+
 ### [**Analysis**]{.underline}
+
+Using the dataset provided,
 
 When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
 For some exploration and visualisations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of dietary categories from 7 to 3.
 
-For analysis and models that involved the weight change variable, any rows with an NA in this column were removed.
-
 Two separate linear models were applied to the data - one to investigate the affect of nutrition on weight change, with an additional model looking at nutritional influence on song duration. This was done as there was found to be no significant interactive effect on song duration when both weight change and nutrition were simultaneously taken into account (ANOVA *F=*1.7525*, P=*0.1743).
+
+Finding an apropriate linear model for this data set required testing out multiple iterations.
 
 ### [**Results & Discussion**]{.underline}
 
@@ -37,7 +39,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: The nutritional percentage of a crickets diet (12-84%) compared to its change in weight over the observational period of one week (n=539). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The estimated marginal mean weight change is presented for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
+**Fig.1 - LEFT**: The nutritional percentage of a crickets diet (12-84%) compared to its change in weight over the observational period of one week (n=539). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
 
 ##### **DIET AND SONG DURATION**
 
@@ -48,6 +50,6 @@ knitr::include_graphics("../Graphs/dd_means_april23.png")
 
 ```
 
-**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet compared to the total length of time (in seconds) spent singing over the observational period of 1 week. The colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The estimated marginal mean song duration is presented for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Note when comparing the adjacent graphs that the y-axes are on different scales.
+**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet compared to the total length of time (in seconds) spent singing over the observational period of 1 week. The background colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The mean song duration in seconds is presented to 4 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%).
 
 ### [**References**]{.underline}
