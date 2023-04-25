@@ -290,3 +290,4 @@ patchwork_dd <- diet_duration3 + plot_means_dd +
 patchwork_dd
 
 ggsave("Graphs/dd_means_april23.png", width=14, height=7.5, units="cm", dpi=300)
+
