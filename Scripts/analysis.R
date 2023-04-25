@@ -51,6 +51,9 @@ cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
 cricket_abs %>% ggplot(aes(x=size_mm, y=song_duration))+
   geom_point()+ geom_smooth(method="lm",    
                             se=FALSE)
+cricket_abs %>% ggplot(aes(x=size_mm, y=weight_change))+
+  geom_point()+ geom_smooth(method="lm",    
+                            se=FALSE)
 
 ## diet, weight change ----
 diet_weightchange <- cricket_weight %>% filter(song_duration !=0) %>%
@@ -136,37 +139,7 @@ colorBlindness::cvdPlot() #colours are accessible
 
 
 #MODEL 📈----
-##Diet, Duration-----
-cricket_abs %>% cor_test(diet, song_duration)
-#cor=0.43 (positive correlation)
 
-lsmodel_dd <- lm(song_duration ~ diet, data=cricket_abs)
-summary(lsmodel_dd)
-performance::check_model(lsmodel_dd)
-#not perfect - check for outliers
-
-performance::check_model(lsmodel_dd, check=c("normality","qq"))
-#slight left skew on QQ plot, upper and lower ends do not fully conform
-performance::check_model(lsmodel_dd, check="outliers")
-#outliers- no points outside contour lines
-#no data points need removing
-#model is not perfect fit but still suitable for use
-
-
-##Diet, weight-----
-lsmodel_dw <- lm(weight_change ~ diet_category, data=cricket_categories)
-summary(lsmodel_dw)
-
-cricket_categories %>% cor_test(weight_change, diet)
-#cor=0.51 (positive correlation)
-
-performance::check_model(lsmodel_dw)
-#not perfect but fairly good fit
-performance::check_model(lsmodel_dw, check=c("normality","qq"))
-#both very good fits
-performance::check_model(lsmodel_dw, check="outliers")
-#no outliers detected
-#model is suitable to use
 
 ##Interactions----
 
@@ -184,25 +157,35 @@ drop1(ls_int, test= "F")
 ls_int2 <- lm(song_duration ~ diet_category + # main effect
                weight_change, data= cricket_categories)
 summary(ls_int2)
-## Test model----
+##Linear model----
 lsmodel1 <- lm(song_duration+1 ~ diet_category + weight_change +size_mm
                + weight_change:diet_category, data=cricket_categories)
+
+performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
+# qq= slight curve, particularly at lower end 
+# homogeneity =not flat, could be improved
 performance::check_model(lsmodel1, check="outliers")
 #no outliers
-performance::check_model(lsmodel1, check="qq")
-#slight curve, particularly at lower end 
-performance::check_model(lsmodel1, check="homogeneity")
-#not flat - could be improved
 
+##Log transformation----
 MASS::boxcox(lsmodel1)
 # 0 is outside the conf interval so log data may not help
-lsmodel2 <- lm(log(song_duration+1) ~ diet_category + weight_change + size_mm
+lsmodel2 <- lm(log(song_duration+1) ~ diet_category 
+               +weight_change+size_mm
                + weight_change:diet_category
                + size_mm:weight_change, data=cricket_categories)
 
-performance::check_model(lsmodel2, check="qq")
-performance::check_model(lsmodel2, check="homogeneity")
+performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
 #even worse fit
+##GLM----
+glm1 <- glm(song_duration ~ diet_category + weight_change + size_mm + 
+           weight_change:diet_category + weight_change:size_mm,
+           data=cricket_categories, family=poisson(link="log"))
+
+performance::check_model(glm1, 
+                         check = c("homogeneity",
+                                   "qq"))
+summary(glm1)
 
 #ADDITIONAL PLOTS----
 
