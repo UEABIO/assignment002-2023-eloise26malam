@@ -107,11 +107,43 @@ glm1 <- glm(song_duration ~ diet_category + weight_change + size_mm +
            weight_change:diet_category + weight_change:size_mm,
            data=cricket_categories, family=poisson(link="log"))
 
+lsmodel1 <- lm(song_duration ~ diet_category + weight_change +size_mm
+               + weight_change:diet_category + weight_change:size_mm, data=cricket_categories)
+
+
+performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
+# qq= slight curve, particularly at lower end 
+# homogeneity =not flat, could be improved
+performance::check_model(lsmodel1, check="outliers")
+#no outliers
+
+lsmodel1 %>%broom::tidy(conf.int = T)
+summary(lsmodel1)
+drop1(lsmodel1, test= "F")
+#test suggests that the additional terms improve model fit
+#keep interaction terms in model
+
+##Log transformation----
+MASS::boxcox(lsmodel1)
+# 0 is outside the conf interval so log data may not help
+lsmodel2 <- lm(log(song_duration+1) ~ diet_category 
+               +weight_change+size_mm
+               + weight_change:diet_category
+               + size_mm:weight_change, data=cricket_categories)
+
+performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
+#even worse fit
+
+##GLM----
+glm1 <- glm(song_duration ~ diet_category + weight_change + size_mm + 
+           weight_change:diet_category + weight_change:size_mm,
+           data=cricket_categories, family=poisson(link="log"))
+
+
 performance::check_model(glm1, 
                          check = c("homogeneity",
                                    "qq"))
 summary(glm1)
-
 
 #PLOTS FOR REPORT----
 ## Diet, Weight change ----
@@ -194,7 +226,6 @@ means <- cricket_categories %>%                           # Get mean & standard 
   as.data.frame()
 means
 
-
 ###Diet, Weight -----
 means_dw <- emmeans::emmeans(lsmodel_dw, specs = ~ diet_category)
 means_dw
@@ -212,10 +243,15 @@ plot_means_dw<-means_dw %>%
   theme(axis.title = element_text(size = 7))
 plot_means_dw
 
+
 cricket_categories%>% ggplot(aes(x = diet_category, y = weight_change)) + 
   geom_point(stat = "summary", fun = "mean")
 ### Diet, Duration----
 means_dd <- emmeans::emmeans(lsmodel1, specs = ~ diet_category, by="song_duration")
+
+### Diet, Duration----
+means_dd <- emmeans::emmeans(lsmodel_dd, specs = ~ diet_category)
+
 means_dd
 
 plot_means_dd<-means_dd %>% 
