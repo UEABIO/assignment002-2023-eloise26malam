@@ -12,11 +12,11 @@ head (cricket_original) #check data loaded successfully
 ##Clean 🧹 ----
 cricket_clean <- janitor::clean_names(cricket_original) #snakecase
 colnames(cricket_clean)
-cricket_clean <- rename(cricket_clean, "size_mm"="pronotum",
+cricket_clean <- dplyr:: rename(cricket_clean, "size_mm"="pronotum",
                         "start_mass"="mass0",
                         "song_duration"="song_week1",
                         "weight_change"="delta_smi")
-#names easier to work with 
+#names easier for me to work with 
 #better descriptions of variables
 
 ## Error Check 🧐----
@@ -24,18 +24,18 @@ cricket_clean%>%duplicated()%>%sum() #no duplicates
 
 summary(cricket_clean)
 #minimum value for song duration not possible  
-#as cannot have negative duration
+#cannot have negative duration
 cricket_abs<-mutate(.data=cricket_clean, song_duration = abs(song_duration)) 
-cricket_abs#removes neg values for song duration
+summary(cricket_abs) #removes neg values for song duration
 
 ##Mutate ----
 
 cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(cricket_abs$diet), 
                       breaks=c(0,36,48,84), labels = c("Low","Medium","High")))
-
 #allows comparison between groups
+
 #PLOTS 📊 ----
-##Exploratory----
+##Initial Exploration----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
 cricket_categories %>% drop_na(song_duration) %>% filter(song_duration !=0)%>%
@@ -102,10 +102,7 @@ lsmodel2 <- lm(log(song_duration+1) ~ diet_category
 performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
 #even worse fit
 
-##GLM----
-glm1 <- glm(song_duration ~ diet_category + weight_change + size_mm + 
-           weight_change:diet_category + weight_change:size_mm,
-           data=cricket_categories, family=poisson(link="log"))
+
 
 lsmodel1 <- lm(song_duration ~ diet_category + weight_change +size_mm
                + weight_change:diet_category + weight_change:size_mm, data=cricket_categories)
