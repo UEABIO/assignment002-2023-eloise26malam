@@ -212,15 +212,6 @@ diet_duration3 <- cricket_categories %>% filter(song_duration !=0) %>%
 diet_duration3
 ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
 
-##Emmeans Plots----
-means <- cricket_categories %>%                           # Get mean & standard deviation by group
-  group_by(diet_category) %>%
-  summarise_at(vars(song_duration, weight_change),
-               list(mean = mean,
-                    sd = sd), na.rm=TRUE) %>% 
-  as.data.frame()
-means
-
 ##Means----
 data_summary <- function(data, varname, groupnames){
   require(plyr)
@@ -265,6 +256,23 @@ plot_means_dd <- ggplot(summary_duration, aes(x=diet_category, y=song_duration,
   theme_classic()+
   theme(axis.title = element_text(size = 7))
 plot_means_dd
+
+##Double factor----
+triple <- cricket_abs %>% filter(song_duration !=0) %>%
+  ggplot(aes(x=weight_change, y=song_duration, colour=diet))+
+  geom_point()+geom_smooth(method="lm", colour="BLACK",   
+                           se=FALSE)+
+  scale_colour_gradient2(low="#c20a13", mid="#f79011", high="#0cf734",
+                         midpoint=48)+
+  labs(x="Weight Change (g)", y="Song Duration (s)", 
+       colour= "Diet\n(Nutritional\nPercentage)")+
+  theme_classic()+
+  theme(legend.key.size  = unit(1, "cm"),
+        legend.title = element_text(size=8),
+        legend.title.align=0.5)
+triple
+ggsave("Graphs/triple_gradient_april23.png", width=14, height=7.5, units="cm", dpi=300)
+
 ##Patchworks 🧶----
 
 ###Diet, weight----
