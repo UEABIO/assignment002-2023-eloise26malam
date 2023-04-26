@@ -44,14 +44,11 @@ cricket_categories %>% drop_na(song_duration) %>% filter(song_duration !=0)%>%
   geom_smooth(method="lm",se=FALSE)
 
 ##Relationships between variables----
-cricket_abs %>% ggplot(aes(x=size_mm, y=start_mass))+
-  geom_point()+ geom_smooth(method="lm",    
-                            se=FALSE)
-#strong relationship between size and start mass
 cricket_abs %>% ggplot(aes(x=size_mm, y=weight_change))+
   geom_point()+ geom_smooth(method="lm",    
                             se=FALSE)
-#suggests interaction between size and weight change
+#suggests possible interaction between size and weight change
+
 cricket_abs %>% ggplot(aes(x=diet, y=weight_change))+
   geom_point()+ geom_jitter()+ geom_smooth(method="lm",    
                                            se=FALSE)
@@ -64,18 +61,19 @@ cricket_abs %>% filter(song_duration !=0)%>% ggplot(aes(x=size_mm, y=song_durati
                             se=FALSE)
 #size may have an effect on song duration
 
-###Weight Change----
+###Weight Change/Diet----
 cricket_weight %>% filter(song_duration !=0) %>%
-  ggplot(aes(x=song_duration, y=weight_change, colour=diet))+
+  ggplot(aes(x=weight_change, y=song_duration, colour=diet))+
   geom_point()+geom_smooth(method="lm", colour="BLACK",   
                            se=FALSE)+
-  scale_colour_gradient2(low="#d90b15", mid="#f79011", high="#05f52d",
+  scale_colour_gradient2(low="#c20a13", mid="#f79011", high="#0cf734",
                          midpoint=48)+
-  theme_classic() #colours are accessible
+  theme_classic() 
+#Both weight change and diet may have an effect on song duration
 
 #MODEL 📈----
 ##Linear model----
-lsmodel1 <- lm(song_duration +1 ~ diet_category + weight_change +size_mm
+lsmodel1 <- lm(song_duration ~ diet_category + weight_change +size_mm
                + weight_change:diet_category + weight_change:size_mm, data=cricket_categories)
 
 
