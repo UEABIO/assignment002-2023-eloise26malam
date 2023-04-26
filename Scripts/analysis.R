@@ -263,13 +263,20 @@ triple <- cricket_abs %>% filter(song_duration !=0) %>%
   geom_point()+geom_smooth(method="lm", colour="BLACK",   
                            se=FALSE)+
   scale_colour_gradient2(low="#c20a13", mid="#f79011", high="#0cf734",
-                         midpoint=48)+
+                         midpoint=48,
+                         breaks=seq(12,84,12),
+                         labels=c(12,24,36,48,60,72,84))+
   labs(x="Weight Change (g)", y="Song Duration (s)", 
        colour= "Diet\n(Nutritional\nPercentage)")+
   theme_classic()+
-  theme(legend.key.size  = unit(1, "cm"),
+  theme(legend.key.width  = unit(1.9, "cm"),
         legend.title = element_text(size=8),
-        legend.title.align=0.5)
+        legend.title.align=0.5,
+        legend.text=element_text(size=7),
+        legend.position="bottom",
+        legend.justification = "left")+
+   guides(colour =guide_colourbar(title.vjust = 2))
+ 
 triple
 ggsave("Graphs/triple_gradient_april23.png", width=14, height=7.5, units="cm", dpi=300)
 
