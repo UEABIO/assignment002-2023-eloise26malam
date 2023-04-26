@@ -398,40 +398,26 @@ sexual signalling.</p>
 </div>
 <div id="introduction" class="section level3">
 <h3><u><strong>Introduction</strong></u></h3>
-<p>A common occurrence in nature is males of a species competing against
-each other for the opportunity to mate with a female <span class="citation">(Cox and Le Boeuf 1977)</span>. These competitions can
-manifest as direct antagonism where males get into a physical conflict.
-Such is the case with red deer, as growing larger antlers to fight with
-correlates to a greater level of reproductive success <span class="citation">(Kruuk et al. 2002)</span>. The other way the males can
-outshine their peers is through courtship displays which are aimed to
-impress the females. A well-known example of this includes male birds
-such as peacocks sporting a large ornamental plumage. In the wild, this
-colourful addition could be seen as a counter-intuitive for survival,
-making it more difficult to hide from and escape predators <span class="citation">(Burk 1982)</span>. However, this is exactly why it is
-so attractive to females of the species - If an individual can survive
-despite their handicap they must be of good fitness, a quality that
-females will want to pass on to their offspring <span class="citation">(Andersson 1986)</span>. As well as physical traits,
-many mating displays come in the form of a dance or song, as is the case
-with the decorated cricket detailed in this paper.</p>
 <p><em>Gryllodes sigillatus</em> is a species of cricket known by many
 names including decorated, banded, and tropical house cricket. The
 signalling song produced by males is facilitated by the orthopteran
-insect&#39;s forewings and antennae and works, via the principles outlined
-above, to attract a female mate <span class="citation">(Subramaniam and
-Subramoniam 1990)</span>. In fact, the song produced can be so alluring
-to the female that, if other crickets’ songs can be heard nearby, a male
-cricket will increasingly engage in mate guarding behaviours; actions
-such as isolating the mated female in a burrow ensure paternity by
-preventing the female from mating multiple times <span class="citation">(Bateman and MacFadyen 1999)</span>. Not only does a
-male’s song work to attract females and dissuade possible rival males,
-but female <em>Gryllodes sigillatus</em> crickets exposed to the
+insect’s forewings and antennae and works via the principles of sexual
+signalling to attract a female mate <span class="citation">(Subramaniam
+and Subramoniam 1990)</span>. In fact, the song produced can be so
+alluring to the female that, if other crickets’ songs can be heard
+nearby, a male cricket will increasingly engage in mate guarding
+behaviours; actions such as isolating the mated female in a burrow
+ensure paternity by preventing the female from mating multiple times
+<span class="citation">(Bateman and MacFadyen 1999)</span>. Not only
+does a male’s song work to attract females and dissuade possible rival
+males, but female <em>Gryllodes sigillatus</em> crickets exposed to the
 acoustic displays of their species reach their full mass quicker than
 females exposed to heterospecific songs or no songs<span class="citation">(Bateman, Verburgt, and Ferguson 2005)</span>. This
 would mean that the females are able to reach sexual maturity quicker
-when in the presence of viable mates. Due to the importance of sexual
-signalling on a cricket’s ability to reproduce, this paper aims to look
-at what factors can influence singing ability, more specifically the
-affects of nutrition on individuals.</p>
+when in the presence of viable mates. Due to the importance that sexual
+signalling has on a cricket’s ability to reproduce, this paper aims to
+look at what factors can influence singing ability, more specifically,
+the affects of nutrition on male individuals.</p>
 </div>
 <div id="analysis" class="section level3">
 <h3><u><strong>Analysis</strong></u></h3>
@@ -444,15 +430,23 @@ negative values are valid for other variables such as weight change.</p>
 <p>For some exploration and visualisations, the data was sorted into
 groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This
 allowed for better comparisons between the upper and lower groups as a
-whole by simplifying the number of dietary categories from 7 to 3.</p>
-<p>Two separate linear models were applied to the data - one to
-investigate the affect of nutrition on weight change, with an additional
-model looking at nutritional influence on song duration. This was done
-as there was found to be no significant interactive effect on song
-duration when both weight change and nutrition were simultaneously taken
-into account (ANOVA <em>F=</em>1.7525<em>, P=</em>0.1743).</p>
-<p>Finding an apropriate linear model for this data set required testing
-out multiple iterations.</p>
+whole by simplifying the number of dietary categories.</p>
+<p>Finding an appropriate linear model for this data set required
+testing out multiple iterations. The response variable in this model is
+song duration, looking at diet category, weight change, and size as
+possible explanatory variables. Initial exploratory plots illustrated
+that both size and diet may have an effect on weight change, so these
+interactions were taken into account in the model. An F-test showed that
+there was a significant interaction between weight change and diet
+category (ANOVA <em>F</em> = 1.7229, <em>P</em> = 0.17955), as well as
+weight change and size (ANOVA <em>F</em> = 5.1010, <em>P</em> = 0.02432)
+so these interaction terms were kept in the model.</p>
+<p>Performance checks of this initial model showed some room for
+improvement, however performing a log transformation on the data
+produced an even worse fit. Furthermore, testing numerous variations of
+a generalized linear model also showed no improvement in performance.
+For this reason, the original linear model using the least-squares
+technique has been used despite not being a perfect example.</p>
 </div>
 <div id="results-discussion" class="section level3">
 <h3><u><strong>Results &amp; Discussion</strong></u></h3>
@@ -497,6 +491,27 @@ plot. Outliers are shown as circular filled plots.
 <strong>RIGHT:</strong> The mean song duration in seconds is presented
 to 4 significant figures for each nutritional category - Low (≤36%),
 Medium(=48%), and High(≥60%).</p>
+<p>The ability of a male cricket to sing for a greater duration than
+their peers has a great impact on their fitness, as a longer song would
+imply a greater chance of mating through the principles of sexual
+selection.</p>
+<p>A common occurrence in nature is males of a species competing against
+each other for the opportunity to mate with a female <span class="citation">(Cox and Le Boeuf 1977)</span>. These competitions can
+manifest as direct antagonism where males get into a physical conflict.
+Such is the case with red deer, as growing larger antlers to fight with
+correlates to a greater level of reproductive success <span class="citation">(Kruuk et al. 2002)</span>. The other way the males can
+outshine their peers is through courtship displays which are aimed to
+impress the females, as is true of the singing behaviour found in
+<em>Gryllodes sigillatus</em>. A well-known example of this includes
+male birds such as peacocks sporting a large ornamental plumage. In the
+wild, this colourful addition could be seen as a counter-intuitive for
+survival, making it more difficult to hide from and escape predators
+<span class="citation">(Burk 1982)</span>. The same could be said for
+the cricket - producing a loud acoustic for an extended time could alert
+predators to the individual’s location. However, this is exactly why it
+is so attractive to females of the species - If an individual can
+survive despite their handicap they must be of good fitness, a quality
+that females will want to pass on to their offspring <span class="citation">(Andersson 1986)</span>.</p>
 </div>
 </div>
 <div id="references" class="section level3 unnumbered">
@@ -515,7 +530,7 @@ Partners.”</span> <em>Ethology</em> 105 (11): 949–57. <a href="https://doi.o
 <div id="ref-bateman2005" class="csl-entry">
 Bateman, Philip W., L. Verburgt, and J. W. H. Ferguson. 2005.
 <span>“Exposure to Male Song Increases Rate of Egg Development in the
-Cricket *Gryllodes Sigillatus*.”</span> <em>African Zoology</em> 40 (2):
+Cricket Gryllodes Sigillatus.”</span> <em>African Zoology</em> 40 (2):
 323–26. <a href="https://doi.org/10.10520/EJC17961">https://doi.org/10.10520/EJC17961</a>.
 </div>
 <div id="ref-burk1982" class="csl-entry">
