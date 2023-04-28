@@ -30,7 +30,7 @@ Performance checks of this initial model showed some room for improvement, howev
 
 ##### **DIET AND WEIGHT CHANGE**
 
-I hypothesised that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared the weight gain of crickets in the groups of Low, Medium, and High nutrition using the linear model described previously.
+I hypothesized that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared the weight gain of crickets in the groups of Low, Medium, and High nutrition using the linear model described previously.
 
 stats results......
 
@@ -47,6 +47,8 @@ Based on the results above which illustrated a greater weight gain in crickets w
 
 stat results.....
 
+This is consistent with previous knowledge, as acoustic production in crickets is a highly energetic process, which would require an abundance of resources derived from diet.
+
 ```{r, echo=FALSE}
 knitr::include_graphics("../Graphs/dd_means_april23.png")
 
@@ -54,8 +56,15 @@ knitr::include_graphics("../Graphs/dd_means_april23.png")
 
 **Fig. 2 - LEFT:** The nutritional percentage of a crickets diet compared to the total length of time (in seconds) spent singing over the observational period of 1 week. The background colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The mean song duration in seconds is presented to 4 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
 
-The ability of a male cricket to sing for a greater duration than their peers has a great impact on their fitness, as a longer song would suggest a greater chance of mating through the principles of sexual selection.
+This is significant as a male cricket's ability to sing for a greater duration than their peers has a great impact on their fitness, something which is facilitated by their nutrition. A longer song would suggest a greater chance of mating through the principles of sexual selection.
 
-A common occurrence in nature is males of a species competing against each other for the opportunity to mate with a female [@cox1977]. These competitions can manifest as direct antagonism where males get into a physical conflict. Such is the case with red deer, as growing larger antlers to fight with correlates to a greater level of reproductive success [@kruuk2002]. The other way the males can outshine their peers is through courtship displays which are aimed to impress the females, as is true of the singing behaviour found in *Gryllodes sigillatus*. A well-known example of this includes male birds such as peacocks sporting a large ornamental plumage. In the wild, this colourful addition could be seen as a counter-intuitive for survival, making it more difficult to hide from and escape predators [@burk1982]. The same could be said for the cricket - producing a loud acoustic for an extended time could alert predators to the individual's location. However, this is exactly why it is so attractive to females of the species - If an individual can survive despite their handicap they must be of good fitness, a quality that females will want to pass on to their offspring [@andersson1986].
+Males of a species competing against each other for the opportunity to mate with a female is a common occurrence in nature [@cox1977]. These competitions can manifest as direct antagonism where males get into a physical conflict. Such is the case with red deer, as growing larger antlers to fight with correlates to a greater level of reproductive success [@kruuk2002]. The other way that males can outshine their peers is through courtship displays which are aimed to impress the females, as is true of the singing behaviour found in *Gryllodes sigillatus*. Another well-known example of this includes male birds such as peacocks sporting a large ornamental plumage. In the wild, this colourful addition could be seen as a counter-intuitive for survival, making it more difficult to hide from and escape predators [@burk1982]. The same could be said for the cricket - producing a loud acoustic for an extended time could alert predators to the individual's location. However, this is exactly why it is so attractive to females of the species - If an individual can survive despite their handicap they must be of good fitness, a quality that females will want to pass on to their offspring [@andersson1986].
+
+##### FINAL CONCLUSIONS
+
+```{r, echo=FALSE}
+knitr::include_graphics("../Graphs/triple_gradient_april23.png")
+
+```
 
 ### [**References**]{.underline}
