@@ -62,7 +62,7 @@ cricket_abs %>% filter(song_duration !=0)%>% ggplot(aes(x=size_mm, y=song_durati
 #size may have an effect on song duration
 
 ###Weight Change/Diet----
-cricket_weight %>% filter(song_duration !=0) %>%
+cricket_abs %>% filter(song_duration !=0) %>%
   ggplot(aes(x=weight_change, y=song_duration, colour=diet))+
   geom_point()+geom_smooth(method="lm", colour="BLACK",   
                            se=FALSE)+
@@ -89,45 +89,20 @@ drop1(lsmodel1, test= "F")
 #test suggests that the additional terms improve model fit
 #keep interaction terms in model
 
+
 ##Log transformation----
-MASS::boxcox(lsmodel1)
-# 0 is outside the conf interval so log data may not help
-lsmodel2 <- lm(log(song_duration+1) ~ diet_category 
-               +weight_change+size_mm
-               + weight_change:diet_category
-               + size_mm:weight_change, data=cricket_categories)
-
-performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
-#even worse fit
-
-
-
-lsmodel1 <- lm(song_duration ~ diet_category + weight_change +size_mm
+lsmodel2 <- lm(song_duration +1 ~ diet_category + weight_change +size_mm
                + weight_change:diet_category + weight_change:size_mm, data=cricket_categories)
-
-
-performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
-# qq= slight curve, particularly at lower end 
-# homogeneity =not flat, could be improved
-performance::check_model(lsmodel1, check="outliers")
-#no outliers
-
-lsmodel1 %>%broom::tidy(conf.int = T)
-summary(lsmodel1)
-drop1(lsmodel1, test= "F")
-#test suggests that the additional terms improve model fit
-#keep interaction terms in model
-
-##Log transformation----
-MASS::boxcox(lsmodel1)
+MASS::boxcox(lsmodel2)
 # 0 is outside the conf interval so log data may not help
-lsmodel2 <- lm(log(song_duration+1) ~ diet_category 
+lsmodel_log <- lm(log(song_duration+1) ~ diet_category 
                +weight_change+size_mm
                + weight_change:diet_category
                + size_mm:weight_change, data=cricket_categories)
 
-performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
+performance::check_model(lsmodel_log, check=c("qq", "homogeneity"))
 #even worse fit
+
 
 ##GLM----
 glm1 <- glm(song_duration ~ diet_category + weight_change + size_mm + 
