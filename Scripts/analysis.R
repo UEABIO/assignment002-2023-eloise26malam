@@ -1,3 +1,4 @@
+# 🦗🦗🦗----
 #SET UP----
 ## Packages 🎁 ----
 library(tidyverse)
@@ -75,7 +76,7 @@ cricket_abs %>% filter(song_duration !=0) %>%
 #MODEL 📈----
 ##Linear model----
 lsmodel1 <- lm(song_duration ~ diet + weight_change +size_mm
-               + weight_change:diet + weight_change:size_mm, data=cricket_categories)
+               + weight_change:diet + weight_change:size_mm, data=cricket_abs)
 
 
 performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
@@ -88,25 +89,26 @@ drop1(lsmodel1, test= "F")
 #test suggests that the interaction terms do not improve model fit
 # aic does not change much, do not keep interaction terms in model
 
-lsmodel2 <- lm(song_duration ~ diet + weight_change + size_mm, data=cricket_categories)
+lsmodel2 <- lm(song_duration ~ diet + weight_change + size_mm, data=cricket_abs)
 performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
 drop1(lsmodel2, test= "F")
 # size does not have a significant imact on model 
 # remove size from model 
 
-lsmodel3 <-  lm(song_duration ~ diet + weight_change, data=cricket_categories)
+lsmodel3 <-  lm(song_duration ~ diet + weight_change, data=cricket_abs)
 performance::check_model(lsmodel3, check=c("qq", "homogeneity"))
 drop1(lsmodel3, test= "F")
 # all terms are relevant to model
-output_table <- broom::tidy(lsmodel3)
+broom::tidy(lsmodel3)
 
+lsmodel_weight <- lm(weight_change ~ diet, data=cricket_abs)
 
 ##Log transformation----
-lsmodel_plus <- lm(song_duration +1 ~ diet_category + weight_change, data=cricket_categories)
+lsmodel_plus <- lm(song_duration +1 ~ diet + weight_change, data=cricket_abs)
 MASS::boxcox(lsmodel_plus)
 # 0 is outside the conf interval so log data may not help
-lsmodel_log <- lm(log(song_duration+1) ~ diet_category 
-               +weight_change, data=cricket_categories)
+lsmodel_log <- lm(log(song_duration+1) ~ diet 
+               +weight_change, data=cricket_abs)
 
 performance::check_model(lsmodel_log, check=c("qq", "homogeneity"))
 #even worse fit
