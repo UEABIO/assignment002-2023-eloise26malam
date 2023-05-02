@@ -67,6 +67,6 @@ knitr::include_graphics("../Graphs/triple_gradient_april23.png")
 
 ```
 
-Fig.3 -
+Fig.3 - The song duration in seconds of male decorated crickets (n=481) in regards to the nutritional percentage of their diet and their change in weight in grams over 1 week. The colour of each point corresponds to the percentage of nutrition in the cricket's diet from 12-84%, on a scale where red=low and green=high.
 
 ### [**References**]{.underline}

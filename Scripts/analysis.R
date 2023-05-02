@@ -212,7 +212,7 @@ plot_means_dd <- ggplot(summary_duration, aes(x=diet_category, y=song_duration,
   theme(axis.title = element_text(size = 7))
 plot_means_dd
 
-##Double factor----
+##Three factor Scatter----
 triple <- cricket_abs %>% filter(song_duration !=0) %>%
   ggplot(aes(x=weight_change, y=song_duration, colour=diet))+
   geom_point()+geom_smooth(method="lm", colour="BLACK",   
