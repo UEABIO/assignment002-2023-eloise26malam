@@ -91,14 +91,14 @@ drop1(lsmodel1, test= "F")
 lsmodel2 <- lm(song_duration ~ diet + weight_change + size_mm, data=cricket_categories)
 performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
 drop1(lsmodel2, test= "F")
-# size does not have a significant imact on model
+# size does not have a significant imact on model 
 # remove size from model 
 
 lsmodel3 <-  lm(song_duration ~ diet + weight_change, data=cricket_categories)
 performance::check_model(lsmodel3, check=c("qq", "homogeneity"))
 drop1(lsmodel3, test= "F")
 # all terms are relevant to model
-broom::tidy(lsmodel4)
+output_table <- broom::tidy(lsmodel3)
 
 
 ##Log transformation----
