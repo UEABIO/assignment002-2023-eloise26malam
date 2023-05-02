@@ -16,15 +16,15 @@ The data-set used contains information collected over the course of a week perta
 
 ### [**Analysis**]{.underline}
 
-The following packages were used during the data analysis and visualisation process: tidyverse [@tidyverse], colorBlindness [@colorBlindness], rstatix [@rstatix], and patchwork [@patchwork].
+This report was produced using R version 4.2.3 [@R] The following packages were used during the data analysis and visualisation process: tidyverse [@tidyverse], colorBlindness [@colorBlindness], rstatix [@rstatix], performance [@performance], MASS [@MASS], broom [@broom] and patchwork [@patchwork].
 
 When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
 For some exploration and visualizations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of dietary categories.
 
-Finding an appropriate linear model for this data set required testing out multiple iterations. The response variable in this model is song duration, looking at diet category, weight change, and size as possible explanatory variables. Initial exploratory plots illustrated that both size and diet may have an effect on weight change, so these interactions were taken into account in the model. An F-test showed that there was a significant interaction between weight change and diet category (ANOVA *F* = 1.7229, *P* = 0.17955), as well as weight change and size (ANOVA *F* = 5.1010, *P* = 0.02432) so these interaction terms were kept in the model.
+Finding an appropriate linear model for this data set required testing out multiple iterations. The response variable in this model is song duration, looking at diet , weight change, and size as possible explanatory variables. Initial exploratory plots illustrated that both size and diet may have an effect on weight change, so these interactions were taken into account in the model. However, both interactions as well as the size variable were dropped from the model as they did not improve its fit.
 
-Performance checks of this initial model showed some room for improvement, however performing a log transformation on the data produced an even worse fit. Furthermore, testing numerous variations of a generalized linear model also showed no improvement in performance. For this reason, the original linear model using the least-squares technique has been used despite not being a perfect example.
+Performance checks of this initial model showed some room for improvement, however performing a log transformation on the data produced an even worse fit. For this reason, the final model used has song duration as a response variable based on diet and weight change.
 
 ### [**Results & Discussion**]{.underline}
 
@@ -66,5 +66,7 @@ Males of a species competing against each other for the opportunity to mate with
 knitr::include_graphics("../Graphs/triple_gradient_april23.png")
 
 ```
+
+Fig.3 -
 
 ### [**References**]{.underline}
