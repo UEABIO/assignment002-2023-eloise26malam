@@ -74,8 +74,8 @@ cricket_abs %>% filter(song_duration !=0) %>%
 
 #MODEL 📈----
 ##Linear model----
-lsmodel1 <- lm(song_duration ~ diet_category + weight_change +size_mm
-               + weight_change:diet_category + weight_change:size_mm, data=cricket_categories)
+lsmodel1 <- lm(song_duration ~ diet + weight_change +size_mm
+               + weight_change:diet + weight_change:size_mm, data=cricket_categories)
 
 
 performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
@@ -84,22 +84,22 @@ performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
 performance::check_model(lsmodel1, check="outliers")
 #no outliers
 
-lsmodel1 %>%broom::tidy(conf.int = T)
-summary(lsmodel1)
 drop1(lsmodel1, test= "F")
-#test suggests that the additional terms do not improve model fit
+#test suggests that the interaction terms do not improve model fit
 # aic does not change much, do not keep interaction terms in model
 
-lsmodel2 <- lm(song_duration ~ diet_category + weight_change + size_mm, data=cricket_categories)
+lsmodel2 <- lm(song_duration ~ diet + weight_change + size_mm, data=cricket_categories)
 performance::check_model(lsmodel2, check=c("qq", "homogeneity"))
 drop1(lsmodel2, test= "F")
 # size does not have a significant imact on model
 # remove size from model 
 
-lsmodel3 <-  lm(song_duration ~ diet_category + weight_change, data=cricket_categories)
+lsmodel3 <-  lm(song_duration ~ diet + weight_change, data=cricket_categories)
 performance::check_model(lsmodel3, check=c("qq", "homogeneity"))
 drop1(lsmodel3, test= "F")
 # all terms are relevant to model
+broom::tidy(lsmodel4)
+
 
 ##Log transformation----
 lsmodel_plus <- lm(song_duration +1 ~ diet_category + weight_change, data=cricket_categories)
@@ -112,6 +112,11 @@ performance::check_model(lsmodel_log, check=c("qq", "homogeneity"))
 #even worse fit
 
 #Use model 3 
+lsmodel_category <- lm(song_duration ~ diet_category + weight_change, data=cricket_categories)
+performance::check_model(lsmodel_category, check=c("qq", "homogeneity"))
+drop1(lsmodel4, test ="F")
+#to look at the increase per category 
+broom::tidy(lsmodel_category)
 
 #PLOTS FOR REPORT----
 ## Diet, Weight change ----
