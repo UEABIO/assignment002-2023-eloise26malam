@@ -22,9 +22,7 @@ When investigating the minimum and maximum data points, a negative value for son
 
 For some exploration and visualizations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of dietary categories.
 
-Finding an appropriate linear model for this data set required testing out multiple iterations. The response variable in this model is song duration, looking at diet , weight change, and size as possible explanatory variables. Initial exploratory plots illustrated that both size and diet may have an effect on weight change, so these interactions were taken into account in the model. However, both interactions as well as the size variable were dropped from the model as they did not improve its fit.
-
-Performance checks of this initial model showed some room for improvement, however performing a log transformation on the data produced an even worse fit. For this reason, the final model used has song duration as a response variable based on diet and weight change.
+I used an ordinary least squares linear model to analyse song duration, looking at diet and weight change as possible explanatory variables. Interaction terms were removed as they were shown not to have an impact: The terms set out relationships between weight change and diet (ANOVA *F*~1,533~ =1.7576, *P=* 0.1855) as well as weight change and size (ANOVA *F*~1,533~ =5.3477, *P=* 0.0211). A further term was removed, as the variable describing size was seen to be unnecessary (ANOVA *F*~1,535~ =2.3698, *P=* 0.1243). The data remained in its original form in the model, as a log transformation was found to make a worse-fitting model.
 
 ### [**Results & Discussion**]{.underline}
 
@@ -44,8 +42,6 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 ##### **DIET AND SONG DURATION**
 
 Based on the results above which illustrated a greater weight gain in crickets with a better diet, I further hypothesized that the group with higher nutrition would also have a greater song duration due to an increased amount of resources to allocate to the costly action.
-
-stat results.....
 
 This is consistent with previous knowledge, as acoustic production in crickets is a highly energetic process, which would require an abundance of resources derived from diet.
 
