@@ -20,8 +20,6 @@ This report was produced using R version 4.2.3 [@R] The following packages were 
 
 When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
-For some exploration and visualizations, the data was sorted into groups of Low (≤36%), Medium(=48%), and High(≥60%) nutrition diets. This allowed for better comparisons between the upper and lower groups as a whole by simplifying the number of dietary categories.
-
 I used an ordinary least squares linear model to analyse song duration, looking at diet and weight change as possible explanatory variables. Interaction terms were removed as they were shown not to have an impact: The removed terms set out relationships between weight change and diet (*F*~1,533~ =1.7576, *P=* 0.1855) as well as weight change and size (*F*~1,533~ =5.3477, *P=* 0.0211). A further term was removed, as the variable describing size was seen to be unnecessary (ANOVA *F*~1,535~ =2.3698, *P=* 0.1243). The data remained in its original form in the model, as a log transformation was found to make a worse-fitting model. The purpose of this model is to test the hypothesis that greater nutrition leads to an increased duration of singing.
 
 A secondary ordinary least squares linear model was created to assess the weight change of crickets with the nutritional percentage of their diet as a categorical predictor. This was done in order to address the hypothesis that diet has an impact on weight change.
@@ -30,16 +28,16 @@ A secondary ordinary least squares linear model was created to assess the weight
 
 ##### **DIET AND WEIGHT CHANGE**
 
-I hypothesized that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared weight change to differing percentages of dietary nutrition using an ordinary least squares linear model where nutritional percentages from 12-84% increasing in increments of 12 were used as a predictor variable for weight change in grams over the course of a week. The changes in weight ranged from a loss of 0.0578 to a gain of 0.0868, and it was found that for each 12% increase in nutrition, a cricket will gain 0.0048 grams. This confirms the hypothesis and is consistent with established knowledge on diet and nutrition.
+I hypothesized that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared weight change to differing percentages of dietary nutrition using an ordinary least squares linear model where nutritional percentages from 12-84% increasing in increments of 12 were used as a predictor variable for weight change in grams over the course of a week. The changes in weight ranged from a loss of 0.0578g to a gain of 0.0868g, and it was found that for each 12% increase in nutrition, a cricket will gain 0.0048 grams. This confirms the hypothesis and is consistent with established knowledge on diet and nutrition.
 
-REF
+REF and STATS
 
 ```{r, echo=FALSE}
 knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: The nutritional percentage of a crickets diet (12-84%) compared to its change in weight over the observational period of one week (n=539). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
+**Fig.1 - LEFT**: The nutritional percentage of a crickets diet (12-84%) compared to its change in weight (grams) over the observational period of one week (n=539). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
 
 ##### **DIET AND SONG DURATION**
 
