@@ -81,7 +81,7 @@ lsmodel1 <- lm(song_duration ~ diet + weight_change +size_mm
 
 performance::check_model(lsmodel1, check=c("qq", "homogeneity"))
 # qq= slight curve, particularly at lower end 
-# homogeneity =not flat, could be improved
+# homogeneity =both ends curl up/down, could be improved
 performance::check_model(lsmodel1, check="outliers")
 #no outliers
 
@@ -101,7 +101,11 @@ drop1(lsmodel3, test= "F")
 # all terms are relevant to model
 broom::tidy(lsmodel3)
 
+##Weight model----
 lsmodel_weight <- lm(weight_change ~ diet, data=cricket_abs)
+performance::check_model(lsmodel_weight, check=c("qq", "homogeneity"))
+#acceptable fit
+broom::tidy(lsmodel_weight)
 
 ##Log transformation----
 lsmodel_plus <- lm(song_duration +1 ~ diet + weight_change, data=cricket_abs)
