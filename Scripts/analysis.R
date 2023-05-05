@@ -97,6 +97,7 @@ performance::check_model(lsmodel3, check="outliers")
 drop1(lsmodel3, test= "F")
 # all terms are relevant to model
 broom::tidy(lsmodel3)
+summary(lsmodel3)
 
 ###Weight----
 lsmodel_weight <- lm(weight_change ~ diet, data=cricket_abs)

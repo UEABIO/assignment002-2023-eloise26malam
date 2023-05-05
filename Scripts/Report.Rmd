@@ -14,7 +14,7 @@ Due to the importance that sexual signalling has on a cricket's ability to repro
 
 ### [**Analysis**]{.underline}
 
-The data-set used to investigate the hypotheses detailed above contains information collected over the course of a week pertaining to male crickets' nutrition, song duration, weight change, and size. R version 4.2.3 [@R] was used to both analyse the data and produce this report.
+The data-set used to investigate the hypotheses detailed above contains information collected over the course of a week pertaining to male crickets' nutrition, song duration, weight change, and size. R version 4.2.3 [@R] was used to analyse the data and investigate which of the recorded factors influence song duration.
 
 When investigating the minimum and maximum data points, a negative value for song duration became apparent. Believing this to be a typing error, I used the absolute values for song duration so as to avoid any impossible values. Only this variable was altered in such a way, as negative values are valid for other variables such as weight change.
 
@@ -39,7 +39,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ##### **DIET AND SONG DURATION**
 
-Based on the results above which illustrated a greater weight gain in crickets with a better diet, I further hypothesized that the group with higher nutrition would also have a greater song duration due to an increased amount of resources to allocate to the costly action.
+Based on the results above which illustrated a greater weight gain in crickets with a better diet, I further hypothesized that the group with higher nutrition would also have a greater song duration due to an increased amount of resources to allocate to the costly action. To test this, I used an ordinary least squares linear model to compare song duration of crickets consuming diets of differing nutritional percentages, with diet as a predictor variable for total song duration in seconds over a week of observation. This showed that for each percentage increase in nutrition, the cricket sang for 0.031 (95% CI: ) seconds longer, meaning for each 12% incremental increase song duration was extended by 0.37 seconds. Illustrated in Fig. 2, the mean song duration for those with a low nutritional intake (≤36% ) is 4.513 seconds, rising to an average of 7.393 for crickets with a high nutritional intake (≥60%).
 
 This is consistent with previous knowledge, as acoustic production in crickets is a highly energetic process, which would require an abundance of resources derived from diet.
 
