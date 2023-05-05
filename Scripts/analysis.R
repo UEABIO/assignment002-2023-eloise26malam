@@ -39,10 +39,14 @@ cricket_categories <- mutate(.data=cricket_abs, diet_category = cut(as.numeric(c
 ##Initial Exploration----
 group_colour <-c("#d90b15", "#f79011", "#05f52d")
 
-cricket_categories %>% drop_na(song_duration) %>% filter(song_duration !=0)%>%
-  ggplot(aes(x=weight_change, y=song_duration, colour=diet_category))+
-  geom_point()+ geom_jitter()+
-  geom_smooth(method="lm",se=FALSE)
+cricket_abs %>% filter(song_duration !=0) %>%
+  ggplot(aes(x=weight_change, y=song_duration, colour=diet))+
+  geom_point()+geom_smooth(method="lm", colour="BLACK",   
+                           se=FALSE)+
+  scale_colour_gradient2(low="#c20a13", mid="#f79011", high="#0cf734",
+                         midpoint=48)+
+  theme_classic() 
+#Both weight change and diet may have an effect on song duration
 
 ##Relationships between variables----
 
@@ -54,27 +58,18 @@ cricket_abs %>% ggplot(aes(x=size_mm, y=weight_change))+
 cricket_abs %>% ggplot(aes(x=diet, y=weight_change))+
   geom_point()+ geom_jitter()+ geom_smooth(method="lm",    
                                            se=FALSE)
-#suggests interaction between diet and weight change
+#suggests possible interaction between diet and weight change
 
-##Affects on duration----
-###Size----
 cricket_abs %>% filter(song_duration !=0)%>% ggplot(aes(x=size_mm, y=song_duration))+
   geom_point()+ geom_smooth(method="lm",    
                             se=FALSE)
 #size may have an effect on song duration
 
-###Weight Change/Diet----
-cricket_abs %>% filter(song_duration !=0) %>%
-  ggplot(aes(x=weight_change, y=song_duration, colour=diet))+
-  geom_point()+geom_smooth(method="lm", colour="BLACK",   
-                           se=FALSE)+
-  scale_colour_gradient2(low="#c20a13", mid="#f79011", high="#0cf734",
-                         midpoint=48)+
-  theme_classic() 
-#Both weight change and diet may have an effect on song duration
+
 
 #MODEL 📈----
 ##Linear model----
+###Song----
 lsmodel1 <- lm(song_duration ~ diet + weight_change +size_mm
                + weight_change:diet + weight_change:size_mm, data=cricket_abs)
 
@@ -97,14 +92,17 @@ drop1(lsmodel2, test= "F")
 
 lsmodel3 <-  lm(song_duration ~ diet + weight_change, data=cricket_abs)
 performance::check_model(lsmodel3, check=c("qq", "homogeneity"))
+performance::check_model(lsmodel3, check="outliers")
+#acceptable fit, no outliers
 drop1(lsmodel3, test= "F")
 # all terms are relevant to model
 broom::tidy(lsmodel3)
 
-##Weight model----
+###Weight----
 lsmodel_weight <- lm(weight_change ~ diet, data=cricket_abs)
 performance::check_model(lsmodel_weight, check=c("qq", "homogeneity"))
-#acceptable fit
+performance::check_model(lsmodel_weight, check="outliers")
+#acceptable fit, no outliers
 broom::tidy(lsmodel_weight)
 
 ##Log transformation----
@@ -116,13 +114,8 @@ lsmodel_log <- lm(log(song_duration+1) ~ diet
 
 performance::check_model(lsmodel_log, check=c("qq", "homogeneity"))
 #even worse fit
-
 #Use model 3 
-lsmodel_category <- lm(song_duration ~ diet_category + weight_change, data=cricket_categories)
-performance::check_model(lsmodel_category, check=c("qq", "homogeneity"))
-drop1(lsmodel4, test ="F")
-#to look at the increase per category 
-broom::tidy(lsmodel_category)
+
 
 #PLOTS FOR REPORT----
 ## Diet, Weight change ----
@@ -172,6 +165,7 @@ diet_duration <- cricket_categories %>% filter(song_duration !=0) %>%
 
 diet_duration
 ggsave("Graphs/diet_duration_march23.png", width=14, height=7.5, units="cm", dpi=300)
+colorBlindness::cvdPlot() #colours are accessible
 
 ##Means----
 data_summary <- function(data, varname, groupnames){
