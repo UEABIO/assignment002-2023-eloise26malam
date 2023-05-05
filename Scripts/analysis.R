@@ -104,7 +104,9 @@ lsmodel_weight <- lm(weight_change ~ diet, data=cricket_abs)
 performance::check_model(lsmodel_weight, check=c("qq", "homogeneity"))
 performance::check_model(lsmodel_weight, check="outliers")
 #acceptable fit, no outliers
+drop1(lsmodel_weight, test= "F")
 broom::tidy(lsmodel_weight)
+summary(lsmodel_weight)
 
 ##Log transformation----
 lsmodel_plus <- lm(song_duration +1 ~ diet + weight_change, data=cricket_abs)
