@@ -24,9 +24,7 @@ A secondary ordinary least squares linear model was created to assess the weight
 
 ##### **DIET AND WEIGHT CHANGE**
 
-I hypothesized that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared weight change to differing percentages of dietary nutrition using an ordinary least squares linear model where nutritional percentages from 12-84% increasing in increments of 12 were used as a predictor variable for weight change in grams over the course of a week. The changes in weight ranged from a loss of 0.0578g to a gain of 0.0868g, and it was found that a cricket gained 0.00596 grams [95% CI; 0.00553-0.00639] for each 12% increase in nutrition (Linear Model: *T*~1,537~ =13.9, *P*\<0.001). This confirms the hypothesis and is consistent with established knowledge on diet and nutrition.
-
-REF and STATS
+I hypothesized that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared weight change to differing percentages of dietary nutrition using an ordinary least squares linear model where nutritional percentages from 12-84% increasing in increments of 12 were used as a predictor variable for weight change in grams over the course of a week. The changes in weight ranged from a loss of 0.0578g to a gain of 0.0868g, and it was found that a cricket gained 0.00596 grams [95% CI; 0.00553-0.00639] for each 12% increase in nutrition (Linear Model: *T*~1,537~ =13.9, *P*\<0.001). This confirms the hypothesis and is consistent with established knowledge on insect diet and nutrition - greater nutrition leads to an increase in growth, but resources can only be put towards processes such as growth, reproduction, and complex behaviours when an individual takes in enough nutrition to first cover the essential basic processes for life [@jr.1982].
 
 ```{r, echo=FALSE}
 knitr::include_graphics("../Graphs/dw_means_april23.png")
