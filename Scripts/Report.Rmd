@@ -31,7 +31,7 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: The nutritional percentage of a crickets diet (12-84%) compared to its change in weight (grams) over the observational period of one week (n=539). The region highlighted in red represent a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
+**Fig.1 - LEFT**: Weight gain (grams) in *Gryllodes sigillatus* increases with the nutritional percentage of the crickets diet (12-84%) over the observational period of one week (n=539). The region highlighted in red represents a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
 
 ##### **DIET AND SONG DURATION**
 
@@ -44,7 +44,7 @@ knitr::include_graphics("../Graphs/dd_means_april23.png")
 
 ```
 
-**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet compared to the total length of time (in seconds) spent singing over the observational period of 1 week. The background colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The mean song duration in seconds is presented to 4 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
+**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet increases the total length of time (in seconds) spent singing over the observational period of 1 week. The background colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The mean song duration in seconds is presented to 4 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
 
 ##### **SIGNIFICANCE AND CONCLUSIONS**
 
