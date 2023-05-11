@@ -1,5 +1,9 @@
 ---
 bibliography: references.bib
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ## **Exploring the influence of nutrition on the duration of singing in *Gryllodes sigillatus,* the decorated cricket - does diet quality affect sexual signalling?**
@@ -24,7 +28,7 @@ The following packages were used during the data analysis and visualisation proc
 
 ### [**Results & Discussion**]{.underline}
 
-##### **DIET AND WEIGHT CHANGE**
+##### **WEIGHT CHANGE**
 
 I hypothesized that the greater the nutritional percentage of a cricket's diet, the more weight it would gain over the course of the observational period (1 week). To test this, I compared weight change to differing percentages of dietary nutrition using an ordinary least squares linear model where nutritional percentages from 12-84% increasing in increments of 12 were used as a predictor variable for weight change in grams over the course of a week. The changes in weight ranged from a loss of 0.0578g to a gain of 0.0868g, and it was found that a cricket gained 0.00596 grams [95% CI; 0.00553-0.00639] for each 12% increase in nutrition (Linear Model: *T*~1,537~ =13.9, *P*\<0.001). This confirms the hypothesis and is consistent with established knowledge on insect diet and nutrition - greater nutrition leads to an increase in growth as resources can only be put towards processes such as growth, reproduction, and complex behaviours when an individual takes in enough nutrition to first cover the essential basic processes for life [@jr.1982].
 
@@ -33,11 +37,11 @@ knitr::include_graphics("../Graphs/dw_means_april23.png")
 
 ```
 
-**Fig.1 - LEFT**: Weight gain (grams) in *Gryllodes sigillatus* increases with the nutritional percentage of the crickets diet (12-84%) over the observational period of one week (n=539). Each 12% increase in nutrition was shown to correspond with an additional weight gain of 0.00596 grams [95% CI; 0.00553-0.00639]. The region highlighted in red represents a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
+**Fig.1 - LEFT**: Weight gain (grams) in *Gryllodes sigillatus* increases with the nutritional percentage of the crickets diet (12-84%) over the observational period of one week (n=539). Each 12% increase in nutrition was shown to correspond with an additional weight gain of 0.00596 grams [95% CI; 0.00553-0.00639]. The region highlighted in red represents a loss of weight while the green region conversely represents weight gain. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are represented by circular plots. **RIGHT:** The mean weight change in grams is presented to 3 significant figures for each nutritional category - Low (\<=36%), Medium(=48%), and High(\>=60%). Error bars extend one standard deviation above and below the mean.
 
-##### **DIET AND SONG DURATION**
+##### **SONG DURATION**
 
-Based on the results above which illustrated a greater weight gain in crickets with a better diet, I further hypothesized that the group with higher nutrition would also have a greater song duration. This would likely be due to an increased amount of resources, meaning that once essential metabolic processes had been covered, more surplus energy would be available to allocate to the costly signalling action. To test this, I used an ordinary least squares linear model to compare the song duration of crickets consuming diets of differing nutritional percentages, with diet as a predictor variable for total song duration in seconds over a week of observation. This showed that for each percentage increase in nutrition, the cricket sang for 0.031 seconds longer [95% CI; 0.025-0.037], meaning for each 12% incremental increase in dietary nutrition, song duration was extended by 0.37 seconds (Linear Model: *T*~1,536~ =5.26, *P*\<0.001). Illustrated in Fig. 2, the mean song duration for those with a low nutritional intake (≤36% ) is 4.513 seconds, rising to an average of 7.393 for crickets with a high nutritional intake (≥60%).
+Based on the results above which illustrated a greater weight gain in crickets with a better diet, I further hypothesized that the group with higher nutrition would also have a greater song duration. This would likely be due to an increased amount of resources, meaning that once essential metabolic processes had been covered, more surplus energy would be available to allocate to the costly signalling action. To test this, I used an ordinary least squares linear model to compare the song duration of crickets consuming diets of differing nutritional percentages, with diet as a predictor variable for total song duration in seconds over a week of observation. This showed that for each percentage increase in nutrition, the cricket sang for 0.031 seconds longer [95% CI; 0.025-0.037], meaning for each 12% incremental increase in dietary nutrition, song duration was extended by 0.37 seconds (Linear Model: *T*~1,536~ =5.26, *P*\<0.001). Illustrated in Fig. 2, the mean song duration for those with a low nutritional intake (\<=36% ) is 4.513 seconds, rising to an average of 7.393 for crickets with a high nutritional intake (\>=60%). It was also seen that weight change further influences song duration, with 0.4 seconds being added for each 0.01g gained [95% CI; 0.34-0.46]. These factors are linked, as individuals gaining the most weight were found to be those on a more nutritious diet.
 
 This is consistent with the previous knowledge on resource allocation [@ketola2009], as acoustic production in crickets is a highly energetic process which would require an abundance of resources derived from their diet.
 
@@ -46,7 +50,7 @@ knitr::include_graphics("../Graphs/dd_means_april23.png")
 
 ```
 
-**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet increases the total length of time (in seconds) spent singing over the observational period of 1 week. Each 12% increase in nutrition lengthened song duration by 0.37 seconds [95% CI; 0.30-0.44]. The background colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The mean song duration in seconds is presented to 4 significant figures for each nutritional category - Low (≤36%), Medium(=48%), and High(≥60%). Error bars extend one standard deviation above and below the mean.
+**Fig. 2 - LEFT:** The nutritional percentage of a crickets diet increases the total length of time (in seconds) spent singing over the observational period of 1 week. Each 12% increase in nutrition lengthened song duration by 0.37 seconds [95% CI; 0.30-0.44]. The background colours surrounding the boxes show the nutritional category of the diet; red representing Low, orange for Medium, and green for High. The median, interquartile range, and range for each nutritional percentage are respectively illustrated by the middle line, box, and whiskers on their plot. Outliers are shown as circular filled plots. **RIGHT:** The mean song duration in seconds is presented to 4 significant figures for each nutritional category - Low (\<=36%), Medium(=48%), and High(\>=60%). Error bars extend one standard deviation above and below the mean.
 
 ##### **SIGNIFICANCE AND CONCLUSIONS**
 
@@ -59,7 +63,7 @@ knitr::include_graphics("../Graphs/triple_gradient_april23.png")
 
 ```
 
-Fig.3 - The total song duration in seconds produced over 1 week by male decorated crickets (n=481) in regards to their change in weight (g) and the nutritional percentage of their diet. The colour of each point corresponds to the percentage of nutrition in the cricket's diet from 12-84%, on a scale where red=low and green=high.
+Fig.3 - The total song duration in seconds produced over 1 week by male decorated crickets (n=481) in regards to their change in weight (g) and the nutritional percentage of their diet. The fitted slope indicates that for every 0.01g gained, 0.4 seconds will be added to song length. The colour of each point corresponds to the percentage of nutrition in the cricket's diet from 12-84%, on a scale where red=low and green=high.
 
 As this investigation found that greater nutrition corresponds with an increased song duration, maintaining a quality diet is important for the success of male crickets. Nutrition also facilitates weight gain which also increases a male's chance of winning over a mate, as not only are female *Gryllodes sigillatus* attracted to longer acoustic displays, but they also prefer the songs of bigger individuals [@kiflawi2000]. Whilst this was found to be true in regards to weight in this data, wherein the crickets consuming a more nutritional diet were both gaining more mass and generally producing a longer song, it was seen that size in terms of a cricket's length did not have a significant influence over song duration which may be a downfall of the data and require further investigation.
 
