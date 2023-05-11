@@ -21,5 +21,6 @@ This report looks at the relationships between nutrition, mass, and the length o
 -   Crickets with a more nutritional diet will gain more weight and also have more energy to expend on performing the costly calling song.
 -   The longer a cricket's song, the more likely it is to attract a female, so diet quality subsequently has an influence on reproductive ability
 
-The following packages were used during the data analysis and visualisation process: tidyverse to transform and present data [@tidyverse], colorBlindness to check plot accessibility [@colorBlindness], rstatix for statistical tests [@rstatix], performance for evaluating the fit of models [@performance], MASS to perform boxcox function [@MASS], broom to tidy data and outputs [@broom], and patchwork to combine multiple plots into single visuals [@patchwork].
+The following packages were used during the data analysis and visualisation process: tidyverse to transform and present data (Wickham et al. 2019), colorBlindness to check plot accessibility (Ou 2021), rstatix for statistical tests (Kassambara 2021), performance for evaluating the fit of models (Lüdecke et al. 2021), MASS to perform boxcox function (Venables and Ripley 2002), broom to tidy data and outputs (Robinson, Hayes, and Couch 2022), and patchwork to combine multiple plots into single visuals (Pedersen 2022).
+
 
