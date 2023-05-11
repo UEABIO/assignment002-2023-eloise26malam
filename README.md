@@ -23,4 +23,3 @@ This report looks at the relationships between nutrition, mass, and the length o
 
 The following packages were used during the data analysis and visualisation process: tidyverse to transform and present data [@tidyverse], colorBlindness to check plot accessibility [@colorBlindness], rstatix for statistical tests [@rstatix], performance for evaluating the fit of models [@performance], MASS to perform boxcox function [@MASS], broom to tidy data and outputs [@broom], and patchwork to combine multiple plots into single visuals [@patchwork].
 
-**References**
