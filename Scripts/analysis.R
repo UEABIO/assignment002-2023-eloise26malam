@@ -5,6 +5,7 @@ library(tidyverse)
 library(colorBlindness)
 library(rstatix)
 library(patchwork)
+library(performance)
 ## Import data 📥 ----
 cricket_original <- read_csv("Data/cricket_song.csv")
 head (cricket_original) #check data loaded successfully
@@ -105,6 +106,7 @@ performance::check_model(lsmodel_weight, check=c("qq", "homogeneity"))
 performance::check_model(lsmodel_weight, check="outliers")
 #acceptable fit, no outliers
 drop1(lsmodel_weight, test= "F")
+#all variables necessary
 broom::tidy(lsmodel_weight)
 summary(lsmodel_weight)
 
